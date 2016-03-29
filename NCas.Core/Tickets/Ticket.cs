@@ -27,5 +27,12 @@ namespace NCas.Core.Tickets
             return (DateTime.Now - CreateTime).TotalSeconds >= timeoutSeconds;
         }
 
+
+        public Ticket(string ticketId, string ticketValue)
+        {
+            TicketId = ticketId;
+            TicketValue = ticketValue;
+            CreateTime = DateTime.Now;
+        }
     }
 }
