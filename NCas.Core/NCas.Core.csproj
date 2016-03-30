@@ -57,6 +57,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\Account.cs" />
+    <Compile Include="Repositories\AccountRepository.cs" />
+    <Compile Include="Repositories\IAccountRepository.cs" />
     <Compile Include="TicketGrantingCookies\DefaultTicketGrantingCookieManager.cs" />
     <Compile Include="TicketGrantingCookies\ITicketGrantingCookieManager.cs" />
     <Compile Include="Tickets\DefaultTicketManager.cs" />
