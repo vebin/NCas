@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{02ADD4EA-39A3-4FB1-B7D7-B2EB21D193FC}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{5A5BCB91-DFF3-4FCD-91F9-0F9BB0B83F8E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NCas.Core</RootNamespace>
-    <AssemblyName>NCas.Core</AssemblyName>
+    <RootNamespace>NCas.ConsoleTest</RootNamespace>
+    <AssemblyName>NCas.ConsoleTest</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -64,7 +66,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -72,26 +73,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\Account.cs" />
-    <Compile Include="Repositories\AccountRepository.cs" />
-    <Compile Include="Repositories\IAccountRepository.cs" />
-    <Compile Include="TicketGrantingCookies\AccountInfo.cs" />
-    <Compile Include="TicketGrantingCookies\DefaultTicketGrantingCookieManager.cs" />
-    <Compile Include="TicketGrantingCookies\ITicketGrantingCookieManager.cs" />
-    <Compile Include="TicketGrantingCookies\TicketGrantingCookie.cs" />
-    <Compile Include="TicketGrantingCookies\TicketGrantingCookieSetting.cs" />
-    <Compile Include="Tickets\DefaultTicketManager.cs" />
-    <Compile Include="Tickets\ITicketManager.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tickets\Ticket.cs" />
-    <Compile Include="Tickets\TicketSetting.cs" />
-    <Compile Include="Utils\CookieUtils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Domain\Services\" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NCas.Core\NCas.Core.csproj">
+      <Project>{02add4ea-39a3-4fb1-b7d7-b2eb21d193fc}</Project>
+      <Name>NCas.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

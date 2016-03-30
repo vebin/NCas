@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCas.Core", "NCas.Core\NCas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCas.Client", "NCas.Client\NCas.Client.csproj", "{1B56A9FC-1845-4D3E-BDB7-A424CB308232}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCas.ConsoleTest", "NCas.ConsoleTest\NCas.ConsoleTest.csproj", "{5A5BCB91-DFF3-4FCD-91F9-0F9BB0B83F8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1B56A9FC-1845-4D3E-BDB7-A424CB308232}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B56A9FC-1845-4D3E-BDB7-A424CB308232}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B56A9FC-1845-4D3E-BDB7-A424CB308232}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A5BCB91-DFF3-4FCD-91F9-0F9BB0B83F8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A5BCB91-DFF3-4FCD-91F9-0F9BB0B83F8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A5BCB91-DFF3-4FCD-91F9-0F9BB0B83F8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A5BCB91-DFF3-4FCD-91F9-0F9BB0B83F8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

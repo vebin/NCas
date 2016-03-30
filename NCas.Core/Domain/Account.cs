@@ -21,7 +21,7 @@ namespace NCas.Core.Domain
 
         /// <summary>登录名
         /// </summary>
-        public string LoginName { get; set; }
+        public string AccountName { get; set; }
 
         /// <summary>密码
         /// </summary>
@@ -32,11 +32,11 @@ namespace NCas.Core.Domain
 
         }
 
-        public Account(string accountId, string code, string loginName, string password)
+        public Account(string accountId, string code, string accountName, string password)
         {
             AccountId = accountId;
             Code = code;
-            LoginName = loginName;
+            AccountName = accountName;
             Password = password;
         }
 

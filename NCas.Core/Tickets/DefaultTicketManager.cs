@@ -4,7 +4,6 @@ using System.Linq;
 using GUtils.Algorithm;
 using GUtils.Logging;
 using GUtils.Scheduling;
-
 namespace NCas.Core.Tickets
 {
     /// <summary>默认票据管理
@@ -15,7 +14,7 @@ namespace NCas.Core.Tickets
         private readonly ConcurrentDictionary<string, Ticket> _tickets = new ConcurrentDictionary<string, Ticket>();
         private readonly object _lockObject=new object();
         private readonly IScheduleService _scheduleService;
-        private readonly int _timeoutSecond = 1800;
+        private readonly int _timeoutSecond;
         private readonly ILogger _logger;
 
         public DefaultTicketManager(TicketSetting setting, IScheduleService scheduleService,
