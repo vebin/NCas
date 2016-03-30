@@ -7,7 +7,6 @@ using GUtils.Utilities;
 namespace NCas.Core.TicketGrantingCookies
 {
     /// <summary>TGC管理
-    /// 
     /// </summary>
     public class DefaultTicketGrantingCookieManager : ITicketGrantingCookieManager
     {
@@ -27,7 +26,7 @@ namespace NCas.Core.TicketGrantingCookies
         public AccountInfo GetTicketGrantingCookie()
         {
             var cookieString = CookieUtils.Get("TGC");
-            var account = DecodeCookie(cookieString);
+            var account = string.IsNullOrEmpty(cookieString) ? null : DecodeCookie(cookieString);
             return account;
         }
 
@@ -41,13 +40,6 @@ namespace NCas.Core.TicketGrantingCookies
                 : DateTime.Now.AddSeconds(_setting.TgcExpiredSeconds);
             CookieUtils.WriteCookie("TGC", cookieString, exp);
         }
-
-
-
-
-
-
-
 
         /// <summary>对TGC进行加密
         /// </summary>
