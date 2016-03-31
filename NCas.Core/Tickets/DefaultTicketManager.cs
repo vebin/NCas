@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Linq;
+using ECommon.Logging;
+using ECommon.Scheduling;
 using GUtils.Algorithm;
-using GUtils.Logging;
-using GUtils.Scheduling;
 namespace NCas.Core.Tickets
 {
     /// <summary>默认票据管理
