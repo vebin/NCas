@@ -13,7 +13,6 @@ namespace NCas.Core.Tickets
         //保存所有的票据
         private readonly ConcurrentDictionary<string, Ticket> _tickets = new ConcurrentDictionary<string, Ticket>();
         private readonly object _lockObject=new object();
-        private readonly IScheduleService _scheduleService;
         private readonly int _timeoutSecond;
         private readonly ILogger _logger;
 
@@ -22,8 +21,7 @@ namespace NCas.Core.Tickets
         {
             _timeoutSecond = setting.TicketInactiveSeconds;
             _logger = loggerFactory.Create(GetType().FullName);
-            _scheduleService = scheduleService;
-            _scheduleService.StartTask("RemoveExpiredAggregates", RemoveExpiredTickets, 1000,
+            scheduleService.StartTask("RemoveExpiredTickets", RemoveExpiredTickets, 1000,
                 setting.ScanExpiredTicketIntervalSeconds);
         }
 
@@ -85,6 +83,9 @@ namespace NCas.Core.Tickets
                 }
             }
         }
+
+        
+
 
 
     }
