@@ -82,11 +82,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tickets\Ticket.cs" />
     <Compile Include="Tickets\TicketSetting.cs" />
-    <Compile Include="Utils\ClientUrlUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
