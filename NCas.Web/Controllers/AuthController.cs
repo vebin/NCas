@@ -38,13 +38,11 @@ namespace NCas.Web.Controllers
             if (account == null)
             {
                 //跳转到登陆页面
-            //  return RedirectToAction()
+              
             }
             var ticket = _ticketManager.CreateTicket();
             var r = ticket.TicketValue;
-
-
-
+            
             return new JsonResult();
         }
 
