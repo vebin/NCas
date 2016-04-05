@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 using ECommon.Logging;
 using ECommon.Scheduling;
-using GUtils.Algorithm;
+
 namespace NCas.Core.Tickets
 {
     /// <summary>默认票据管理
@@ -11,7 +11,7 @@ namespace NCas.Core.Tickets
     public class DefaultTicketManager : ITicketManager
     {
         //保存所有的票据
-        private readonly ConcurrentDictionary<string, Ticket> _tickets = new ConcurrentDictionary<string, Ticket>();
+        private readonly Dictionary<string, Ticket> _tickets = new Dictionary<string, Ticket>();
         private readonly object _lockObject=new object();
         private readonly int _timeoutSecond;
         private readonly ILogger _logger;
@@ -28,14 +28,14 @@ namespace NCas.Core.Tickets
 
         /// <summary>生成票据,并保存到集合
         /// </summary>
-        public Ticket CreateTicket()
+        public Ticket CreateTicket(string accountId, string code)
         {
-            var ticketId = GuidUtils.NewStringGuidN();
-            var ticketValue = GuidUtils.NewStringGuidN();
-            var ticket = new Ticket(ticketId, ticketValue);
+            var ticketId = Guid.NewGuid().ToString("N");
+            var ticketValue = Guid.NewGuid().ToString("N");
+            var ticket = new Ticket(ticketId, ticketValue, new TicketAccount(accountId, code));
             lock (_lockObject)
             {
-                _tickets.TryAdd(ticketId, ticket);
+                _tickets.Add(ticketId, ticket);
             }
             return ticket;
         }
@@ -49,19 +49,14 @@ namespace NCas.Core.Tickets
                 var ticket = _tickets.Values.FirstOrDefault(x => x.TicketValue == ticketValue);
                 if (ticket != null)
                 {
-                    Ticket remove;
-                    _tickets.TryRemove(ticket.TicketId, out remove);
-                    if (remove != null)
-                    {
-                        //需要写入TGC到cookie
-                        return true;
-                    }
+                    _tickets.Remove(ticket.TicketId);
+                    //需要写入TGC到cookie
                 }
                 return false;
             }
         }
 
-        /// <summary>移除过期的Ticket
+        /// <summary>移除过期的Ticket,并且做了日志记录
         /// </summary>
         public void RemoveExpiredTickets()
         {
@@ -70,8 +65,7 @@ namespace NCas.Core.Tickets
             {
                 lock (_lockObject)
                 {
-                    Ticket remove;
-                    if (_tickets.TryRemove(ticket.TicketId, out remove))
+                    if (_tickets.Remove(ticket.TicketId))
                     {
                         if (_logger.IsDebugEnabled)
                         {

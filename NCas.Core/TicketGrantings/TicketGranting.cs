@@ -2,7 +2,7 @@
 using GUtils.Encrypt;
 using GUtils.Serializing;
 
-namespace NCas.Core.TicketGranting
+namespace NCas.Core.TicketGrantings
 {
     /// <summary>TGC票据
     /// </summary>

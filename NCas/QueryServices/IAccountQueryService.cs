@@ -9,5 +9,9 @@ namespace NCas.QueryServices
         /// <summary>根据账号的代码查询账号
         /// </summary>
         AccountInfoDto FindByCode(string code);
+
+        /// <summary>根据账号名称查询账号信息
+        /// </summary>
+        AccountInfoVerifyDto FindVerifyDtoByName(string accountName);
     }
 }

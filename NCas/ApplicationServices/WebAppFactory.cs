@@ -14,20 +14,26 @@ namespace NCas.ApplicationServices
     /// </summary>
     public class WebAppFactory
     {
-        private static readonly List<WebAppInfoDto> _webAppDict = new List<WebAppInfoDto>();
-        private static readonly IWebAppQueryService AppQueryService;
+        private static readonly List<WebAppInfoDto> WebAppDict;
 
         static WebAppFactory()
         {
-            AppQueryService = ObjectContainer.Resolve<IWebAppQueryService>();
-            _webAppDict = AppQueryService.FindAll().ToList();
+            var appQueryService = ObjectContainer.Resolve<IWebAppQueryService>();
+            WebAppDict = appQueryService.FindAll().ToList();
         }
 
         /// <summary>根据客户端跳转过来的Url查询出客户端信息
         /// </summary>
         public static WebAppInfoDto GetWebAppByUrl(string refererUrl)
         {
-            return _webAppDict.FirstOrDefault(x => RequestUtils.SameDomain(x.Url, refererUrl));
+            return WebAppDict.FirstOrDefault(x => RequestUtils.SameDomain(x.Url, refererUrl));
+        }
+
+        /// <summary>根据WebAppId获取WebApp信息
+        /// </summary>
+        public static WebAppInfoDto GetWebAppById(string id)
+        {
+            return WebAppDict.FirstOrDefault(x => x.WebAppId == id);
         }
 
 

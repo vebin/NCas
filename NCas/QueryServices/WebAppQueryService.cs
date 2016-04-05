@@ -21,6 +21,9 @@ namespace NCas.QueryServices
                     UseFlag = (int) UseFlag.Useable
                 }, ConfigSettings.WebAppTable);
             }
-        } 
+        }
+
+
+
     }
 }

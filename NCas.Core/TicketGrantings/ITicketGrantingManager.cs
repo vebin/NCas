@@ -1,4 +1,4 @@
-﻿namespace NCas.Core.TicketGranting
+﻿namespace NCas.Core.TicketGrantings
 {
     /// <summary>TGC管理接口
     /// </summary>

@@ -37,7 +37,6 @@ namespace NCas.Domain.WebApps
         }
 
 
-
         //删除
         private void Handle(WebAppChanged evnt)
         {

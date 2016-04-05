@@ -55,7 +55,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="GUtils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GUtils.1.0.8\lib\GUtils.dll</HintPath>
+      <HintPath>..\packages\GUtils.1.0.9\lib\GUtils.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
@@ -79,6 +79,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationServices\AccountService.cs" />
+    <Compile Include="ApplicationServices\IAccountService.cs" />
     <Compile Include="ApplicationServices\WebAppFactory.cs" />
     <Compile Include="CommandHandlers\AccountCommandHandler.cs" />
     <Compile Include="Commands\Accounts\ChangeAccount.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="QueryServices\AccountQueryService.cs" />
     <Compile Include="QueryServices\BaseQueryService.cs" />
     <Compile Include="QueryServices\Dtos\AccountInfoDto.cs" />
+    <Compile Include="QueryServices\Dtos\AccountInfoVerifyDto.cs" />
     <Compile Include="QueryServices\Dtos\WebAppInfoDto.cs" />
     <Compile Include="QueryServices\IAccountQueryService.cs" />
     <Compile Include="QueryServices\IWebAppQueryService.cs" />

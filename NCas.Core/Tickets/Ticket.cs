@@ -19,6 +19,9 @@ namespace NCas.Core.Tickets
         /// <summary>票据创建时间
         /// </summary>
         public DateTime CreateTime { get; set; }
+        /// <summary>关联账号
+        /// </summary>
+        public TicketAccount RefAccount { get; set; }
 
         /// <summary>判断票据是否过期
         /// </summary>
@@ -28,10 +31,11 @@ namespace NCas.Core.Tickets
         }
 
 
-        public Ticket(string ticketId, string ticketValue)
+        public Ticket(string ticketId, string ticketValue,TicketAccount refAccount)
         {
             TicketId = ticketId;
             TicketValue = ticketValue;
+            RefAccount = refAccount;
             CreateTime = DateTime.Now;
         }
     }

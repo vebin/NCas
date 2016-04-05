@@ -3,9 +3,8 @@ using GUtils.Encrypt;
 using GUtils.Logging;
 using GUtils.Serializing;
 using GUtils.Utilities;
-using NCas.Core.TicketGrantingCookies;
 
-namespace NCas.Core.TicketGranting
+namespace NCas.Core.TicketGrantings
 {
     /// <summary>TGC管理
     /// </summary>

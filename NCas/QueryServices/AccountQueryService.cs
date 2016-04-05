@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using ECommon.Dapper;
 using NCas.Common;
 using NCas.Common.Enums;
@@ -20,17 +16,25 @@ namespace NCas.QueryServices
         {
             using (var connection = GetConnection())
             {
-                var data = connection.QueryList(new
+                return connection.QueryList<AccountInfoDto>(new
                 {
                     Code = code,
                     UseFlag = (int) UseFlag.Useable
                 }, ConfigSettings.AccountTable).FirstOrDefault();
+            }
+        }
 
-                if (data != null)
+        /// <summary>根据账号名称查询账号信息
+        /// </summary>
+        public AccountInfoVerifyDto FindVerifyDtoByName(string accountName)
+        {
+            using (var connection = GetConnection())
+            {
+                return connection.QueryList<AccountInfoVerifyDto>(new
                 {
-                    return new AccountInfoDto(data.AccountId, data.Code, data.AccountName);
-                }
-                return null;
+                    AccountName = accountName,
+                    UseFlag = (int) UseFlag.Useable
+                }, ConfigSettings.AccountTable).FirstOrDefault();
             }
         }
     }

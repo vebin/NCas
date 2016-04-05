@@ -6,7 +6,7 @@
     {
         /// <summary>生成票据,并保存到集合
         /// </summary>
-        Ticket CreateTicket();
+        Ticket CreateTicket(string accountId, string code);
 
         /// <summary>验证票据是否存在,如果该票据存在,则验证之后就销毁
         /// </summary>
