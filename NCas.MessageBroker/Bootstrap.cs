@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using ECommon.Components;
 using ECommon.Configurations;
 using ECommon.Logging;
@@ -23,7 +19,7 @@ namespace NCas.MessageBroker
 
         public static void Initialize()
         {
-           // ConfigSettings.Initialize();
+            ConfigSettings.Initialize();
             InitializeECommon();
             try
             {

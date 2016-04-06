@@ -6,6 +6,6 @@ namespace NCas.ApplicationServices
     {
         /// <summary>账号与密码是否匹配
         /// </summary>
-        bool AccountMatch(string accountName, string password);
+        AccountInfoVerifyDto AccountMatch(string accountName, string password);
     }
 }

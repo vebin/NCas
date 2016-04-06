@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NCas.Core.Tickets;
+﻿using NCas.Core.Tickets;
 
 namespace NCas.Core.Utils
 {
@@ -14,10 +9,10 @@ namespace NCas.Core.Utils
 
         /// <summary>获取服务端登陆的地址
         /// </summary>
-        public static string GetLoginUrl(string callBackUrl)
+        public static string GetLoginUrl(string webAppKey, string callBackUrl)
         {
             // ReSharper disable once UseStringInterpolation
-            return string.Format("/AccountLogin?CallBackUrl={0}", callBackUrl);
+            return string.Format("/AccountLogin?WebAppKey={0}&CallBackUrl={1}", webAppKey, callBackUrl);
         }
 
         public static string GetErrorUrl()

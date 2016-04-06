@@ -1,4 +1,5 @@
 ﻿using System;
+using ECommon.Components;
 using GUtils.Encrypt;
 using GUtils.Logging;
 using GUtils.Serializing;
@@ -8,11 +9,17 @@ namespace NCas.Core.TicketGrantings
 {
     /// <summary>TGC管理
     /// </summary>
+    [Component]
     public class DefaultTicketGrantingManager : ITicketGrantingManager
     {
         private readonly ILogger _logger;
         private readonly IJsonSerializer _jsonSerializer;
         private readonly TicketGrantingSetting _setting;
+
+        public DefaultTicketGrantingManager()
+        {
+        }
+
         public DefaultTicketGrantingManager(TicketGrantingSetting setting, ILoggerFactory loggerFactory,
             IJsonSerializer jsonSerializer)
         {

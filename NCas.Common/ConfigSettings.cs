@@ -34,14 +34,14 @@ namespace NCas.Common
 
         public static void Initialize()
         {
-            if (ConfigurationManager.ConnectionStrings["Enode"] != null)
+            if (ConfigurationManager.ConnectionStrings["ENode"] != null)
             {
-                ENodeConnectionString = ConfigurationManager.ConnectionStrings["Enode"].ConnectionString;
+                ENodeConnectionString = ConfigurationManager.ConnectionStrings["ENode"].ConnectionString;
             }
 
-            if (ConfigurationManager.ConnectionStrings["Cas"] != null)
+            if (ConfigurationManager.ConnectionStrings["NCas"] != null)
             {
-                CasConnectionString = ConfigurationManager.ConnectionStrings["Cas"].ConnectionString;
+                CasConnectionString = ConfigurationManager.ConnectionStrings["NCas"].ConnectionString;
             }
 
             AccountTable = "Account";

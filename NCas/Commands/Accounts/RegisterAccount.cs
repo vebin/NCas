@@ -1,4 +1,6 @@
 ﻿using ENode.Commanding;
+using GUtils.Encrypt;
+using NCas.Utils;
 
 namespace NCas.Commands.Accounts
 {
@@ -19,7 +21,7 @@ namespace NCas.Commands.Accounts
         {
             Code = code;
             AccountName = accountName;
-            Password = password;
+            Password = EncryptUtils.EncryptAccountPassword(password);
         }
     }
 }

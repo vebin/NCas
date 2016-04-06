@@ -1,4 +1,5 @@
-﻿using NCas.QueryServices.Dtos;
+﻿using System.Collections.Generic;
+using NCas.QueryServices.Dtos;
 
 namespace NCas.QueryServices
 {
@@ -6,6 +7,10 @@ namespace NCas.QueryServices
     /// </summary>
     public interface IAccountQueryService
     {
+        /// <summary>查询所有账号
+        /// </summary>
+        IEnumerable<AccountInfoDto> FindAll();
+
         /// <summary>根据账号的代码查询账号
         /// </summary>
         AccountInfoDto FindByCode(string code);

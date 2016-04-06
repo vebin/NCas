@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ECommon.Components;
 using ECommon.Logging;
 using ECommon.Scheduling;
 
@@ -9,12 +10,17 @@ namespace NCas.Core.WebApps
 
     /// <summary>WebApp临时管理
     /// </summary>
+    [Component]
     public class DefaultWebAppManager : IWebAppManager
     {
         private readonly Dictionary<string, WebAppCache> _temporaryWebAppDict = new Dictionary<string, WebAppCache>();
         private readonly object _lockObject = new object();
         private readonly int _timeoutSecond;
         private readonly ILogger _logger;
+
+        public DefaultWebAppManager()
+        {
+        }
 
         public DefaultWebAppManager(WebAppCacheSetting setting, IScheduleService scheduleService,
             ILoggerFactory loggerFactory)
@@ -47,6 +53,8 @@ namespace NCas.Core.WebApps
             }
         }
 
+        /// <summary>移除过期的缓存
+        /// </summary>
         public void RemoveExpiredWebApp()
         {
             var expiredWebApps = _temporaryWebAppDict.Values.Where(x => x.IsExpired(_timeoutSecond));

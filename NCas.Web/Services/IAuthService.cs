@@ -9,7 +9,7 @@ namespace NCas.Web.Services
     {
         /// <summary>验证,是否已经登陆,没有登陆就重新跳转
         /// </summary>
-        ActionResult Verify(AccountInfo account, string callBackUrl);
+        ActionResult Verify(AccountInfo account, string webAppKey, string callBackUrl);
 
 
     }

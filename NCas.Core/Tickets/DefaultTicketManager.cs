@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ECommon.Components;
 using ECommon.Logging;
 using ECommon.Scheduling;
 
@@ -8,6 +9,7 @@ namespace NCas.Core.Tickets
 {
     /// <summary>默认票据管理
     /// </summary>
+    [Component]
     public class DefaultTicketManager : ITicketManager
     {
         //保存所有的票据
@@ -16,9 +18,10 @@ namespace NCas.Core.Tickets
         private readonly int _timeoutSecond;
         private readonly ILogger _logger;
 
-        public DefaultTicketManager(TicketSetting setting, IScheduleService scheduleService,
+        public DefaultTicketManager(IScheduleService scheduleService,
             ILoggerFactory loggerFactory)
         {
+            var setting=new TicketSetting();
             _timeoutSecond = setting.TicketInactiveSeconds;
             _logger = loggerFactory.Create(GetType().FullName);
             scheduleService.StartTask("RemoveExpiredTickets", RemoveExpiredTickets, 1000,

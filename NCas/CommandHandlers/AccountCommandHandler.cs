@@ -1,5 +1,4 @@
-﻿using System;
-using ECommon.Components;
+﻿using ECommon.Components;
 using ENode.Commanding;
 using ENode.Infrastructure;
 using NCas.Commands.Accounts;
@@ -15,6 +14,10 @@ namespace NCas.CommandHandlers
     {
         private readonly ILockService _lockService;
         private readonly AccountService _accountService;
+        public AccountCommandHandler()
+        {
+        }
+
         public AccountCommandHandler(ILockService lockService,AccountService accountService)
         {
             _lockService = lockService;

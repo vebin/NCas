@@ -29,6 +29,10 @@ namespace NCas.QueryServices.Dtos
         /// </summary>
         public string NotifyUrl { get; set; }
 
+        public WebAppInfoDto()
+        {
+        }
+
         public WebAppInfoDto(string webAppId, string appKey, string appName, string url, string verifyTicketUrl, string notifyUrl)
         {
             WebAppId = webAppId;

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ServiceProcess;
 
 namespace NCas.MessageBroker
 {
@@ -10,6 +7,17 @@ namespace NCas.MessageBroker
     {
         static void Main(string[] args)
         {
+            if (!Environment.UserInteractive)
+            {
+                ServiceBase.Run(new Service1());
+            }
+            else
+            {
+                Bootstrap.Initialize();
+                Bootstrap.Start();
+                Console.WriteLine("Press Enter to exit...");
+                Console.ReadLine();
+            }
         }
     }
 }

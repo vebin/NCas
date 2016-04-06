@@ -55,11 +55,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="GUtils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GUtils.1.0.9\lib\GUtils.dll</HintPath>
+      <HintPath>..\packages\GUtils.1.1.0\lib\GUtils.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -83,8 +83,11 @@
     <Compile Include="ApplicationServices\IAccountService.cs" />
     <Compile Include="ApplicationServices\WebAppFactory.cs" />
     <Compile Include="CommandHandlers\AccountCommandHandler.cs" />
+    <Compile Include="CommandHandlers\WebAppCommandHandler.cs" />
     <Compile Include="Commands\Accounts\ChangeAccount.cs" />
     <Compile Include="Commands\Accounts\RegisterAccount.cs" />
+    <Compile Include="Commands\WebApps\ChangeWebApp.cs" />
+    <Compile Include="Commands\WebApps\CreateWebApp.cs" />
     <Compile Include="Denormalizers\AbstractDenormalizer.cs" />
     <Compile Include="Denormalizers\AccountDenormalizer.cs" />
     <Compile Include="Denormalizers\WebAppDenormalizer.cs" />
@@ -96,7 +99,10 @@
     <Compile Include="Domain\Repositories\AccountRepository.cs" />
     <Compile Include="Domain\Repositories\BaseRepository.cs" />
     <Compile Include="Domain\Repositories\IAccountRepository.cs" />
+    <Compile Include="Domain\Repositories\IWebAppRepository.cs" />
+    <Compile Include="Domain\Repositories\WebAppRepository.cs" />
     <Compile Include="Domain\Services\AccountService.cs" />
+    <Compile Include="Domain\Services\WebAppService.cs" />
     <Compile Include="Domain\WebApps\WebApp.cs" />
     <Compile Include="Domain\WebApps\WebAppChanged.cs" />
     <Compile Include="Domain\WebApps\WebAppCreated.cs" />
@@ -110,6 +116,8 @@
     <Compile Include="QueryServices\IAccountQueryService.cs" />
     <Compile Include="QueryServices\IWebAppQueryService.cs" />
     <Compile Include="QueryServices\WebAppQueryService.cs" />
+    <Compile Include="Utils\EncryptUtils.cs" />
+    <Compile Include="Utils\WebAppUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MessagePublishers\" />

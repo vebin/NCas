@@ -68,15 +68,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="GUtils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GUtils.1.0.9\lib\GUtils.dll</HintPath>
+      <HintPath>..\packages\GUtils.1.1.0\lib\GUtils.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="GUtils.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GUtils.Mvc.1.0.8\lib\GUtils.Mvc.dll</HintPath>
+      <HintPath>..\packages\GUtils.Mvc.1.0.9\lib\GUtils.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -154,8 +154,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\WebAppController.cs" />
+    <Compile Include="Extensions\AsyncTaskResultExtensions.cs" />
+    <Compile Include="Extensions\ENodeExtensions.cs" />
+    <Compile Include="Extensions\HandleExceptionAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -163,6 +167,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="Services\IAuthService.cs" />
+    <Compile Include="TopicProviders\CommandTopicProvider.cs" />
+    <Compile Include="ViewModels\CreateAccountDto.cs" />
+    <Compile Include="ViewModels\CreateWebAppDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -173,6 +180,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -197,6 +207,14 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Shared\Forbidden.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
+    <Content Include="Views\Shared\TimeoutError.cshtml" />
+    <Content Include="Views\Shared\UnAuthorized.cshtml" />
+    <Content Include="Views\WebApp\Index.cshtml" />
+    <Content Include="Views\WebApp\Create.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -210,6 +228,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NCas.Common\NCas.Common.csproj">
+      <Project>{ef24f157-438b-4303-a659-e9c675cd5a83}</Project>
+      <Name>NCas.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NCas.Core\NCas.Core.csproj">
       <Project>{02add4ea-39a3-4fb1-b7d7-b2eb21d193fc}</Project>
       <Name>NCas.Core</Name>
