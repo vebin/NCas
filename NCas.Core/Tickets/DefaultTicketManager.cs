@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using ECommon.Components;
 using ECommon.Logging;
 using ECommon.Scheduling;
+using GUtils.SimulationRequest;
+using NCas.Core.Utils;
 
 namespace NCas.Core.Tickets
 {
@@ -14,14 +17,14 @@ namespace NCas.Core.Tickets
     {
         //保存所有的票据
         private readonly Dictionary<string, Ticket> _tickets = new Dictionary<string, Ticket>();
-        private readonly object _lockObject=new object();
+        private readonly object _lockObject = new object();
         private readonly int _timeoutSecond;
         private readonly ILogger _logger;
 
         public DefaultTicketManager(IScheduleService scheduleService,
             ILoggerFactory loggerFactory)
         {
-            var setting=new TicketSetting();
+            var setting = new TicketSetting();
             _timeoutSecond = setting.TicketInactiveSeconds;
             _logger = loggerFactory.Create(GetType().FullName);
             scheduleService.StartTask("RemoveExpiredTickets", RemoveExpiredTickets, 1000,
@@ -81,9 +84,17 @@ namespace NCas.Core.Tickets
             }
         }
 
-        
-
+        public async Task TicktToClient(WebAppInfo webApp, Ticket ticket, string callBackUrl)
+        {
+            var url = UrlUtils.GetClientVerifyTicketUrl(webApp, ticket, callBackUrl);
+            var result =await SimulatRequest.Instance(url, "post").BeginRequestAsync();
+            if (result.Success)
+            {
+                
+            }
+        }
 
 
     }
+
 }

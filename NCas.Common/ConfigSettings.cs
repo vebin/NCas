@@ -20,9 +20,13 @@ namespace NCas.Common
         /// <summary>账号表
         /// </summary>
         public static string AccountTable { get; set; }
-        /// <summary>账号索引表
+        /// <summary>账号Code索引表
         /// </summary>
-        public static string AccountIndexTable { get; set; }
+        public static string AccountCodeIndexTable { get; set; }
+        /// <summary>账号名称索引表
+        /// </summary>
+        public static string AccountNameIndexTable { get; set; }
+
         /// <summary>网站节点表
         /// </summary>
         public static string WebAppTable { get; set; }
@@ -45,8 +49,8 @@ namespace NCas.Common
             }
 
             AccountTable = "Account";
-            AccountIndexTable = "AccountIndex";
-
+            AccountCodeIndexTable = "AccountCodeIndex";
+            AccountNameIndexTable = "AccountNameIndex";
             WebAppTable = "WebApp";
 
             BrokerProducerPort = 10000;

@@ -13,11 +13,11 @@ namespace NCas.MessageBroker
 {
     public class Bootstrap
     {
-        private static ILogger _logger;
-        private static ECommonConfiguration _configuration;
-        private static BrokerController _broker;
+        private ILogger _logger;
+        private ECommonConfiguration _configuration;
+        private BrokerController _broker;
 
-        public static void Initialize()
+        public void Initialize()
         {
             ConfigSettings.Initialize();
             InitializeECommon();
@@ -31,7 +31,8 @@ namespace NCas.MessageBroker
                 throw;
             }
         }
-        public static void Start()
+
+        public void Start()
         {
             try
             {
@@ -43,7 +44,8 @@ namespace NCas.MessageBroker
                 throw;
             }
         }
-        public static void Stop()
+
+        public void Stop()
         {
             try
             {
@@ -59,7 +61,7 @@ namespace NCas.MessageBroker
             }
         }
 
-        private static void InitializeECommon()
+        private void InitializeECommon()
         {
             _configuration = ECommonConfiguration
                 .Create()
@@ -68,10 +70,11 @@ namespace NCas.MessageBroker
                 .UseLog4Net()
                 .UseJsonNet()
                 .RegisterUnhandledExceptionHandler();
-            _logger = ObjectContainer.Resolve<ILoggerFactory>().Create(typeof(Bootstrap).FullName);
+            _logger = ObjectContainer.Resolve<ILoggerFactory>().Create(typeof (Bootstrap).FullName);
             _logger.Info("ECommon initialized.");
         }
-        private static void InitializeEQueue()
+
+        private void InitializeEQueue()
         {
             _configuration.RegisterEQueueComponents();
             var storePath = ConfigurationManager.AppSettings["equeueStorePath"];

@@ -35,19 +35,40 @@ namespace NCas.Web.Controllers
             return View();
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
+        [HttpPost]
         public async Task<ActionResult> Create(CreateWebAppDto dto)
         {
             var command = dto.ToCreateWebApp();
             var result = await ExecuteCommandAsync(command);
             if (!result.IsSuccess())
             {
-                ModelState.AddModelError("Error", result.GetErrorMessage());
+                ModelState.AddModelError(string.Empty, result.GetErrorMessage());
                 return View();
             }
             return RedirectToAction("Index");
         }
-        
+
+        [HttpGet]
+        public ActionResult Edit(string webAppId)
+        {
+            var webAppInfoDto = _webAppQueryService.FindById(webAppId);
+            ViewData.Model = EditWebAppDto.GetFromWebAppInfoDto(webAppInfoDto);
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Edit(EditWebAppDto dto)
+        {
+            var command = dto.ToUpdateWebApp();
+            var result = await ExecuteCommandAsync(command);
+            if (!result.IsSuccess())
+            {
+                ModelState.AddModelError(string.Empty, result.GetErrorMessage());
+                var model = EditWebAppDto.GetFromWebAppInfoDto(_webAppQueryService.FindById(dto.WebAppId));
+                return View(model);
+            }
+            return RedirectToAction("Index");
+        }
 
 
 

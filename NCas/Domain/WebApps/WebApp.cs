@@ -18,6 +18,13 @@ namespace NCas.Domain.WebApps
             ApplyEvent(new WebAppCreated(this, info));
         }
 
+        /// <summary>修改WebApp
+        /// </summary>
+        public void Update(WebAppEditableInfo info)
+        {
+            ApplyEvent(new WebAppUpdated(this, info));
+        }
+
         /// <summary>删除节点
         /// </summary>
         public void Change(int useFlag)
@@ -25,7 +32,6 @@ namespace NCas.Domain.WebApps
             Assert.IsNotInEnum("删除状态", typeof (UseFlag), useFlag);
             ApplyEvent(new WebAppChanged(this, useFlag));
         }
-
 
         #region Event Handle Methods
         //创建
@@ -36,6 +42,13 @@ namespace NCas.Domain.WebApps
             _useFlag = (int)UseFlag.Useable;
         }
 
+        //更新
+        private void Handle(WebAppUpdated evnt)
+        {
+            var editableInfo = evnt.Info;
+            _info = new WebAppInfo(_info.AppKey, editableInfo.AppName, editableInfo.Url, editableInfo.VerifyTicketUrl,
+                editableInfo.NotifyUrl);
+        }
 
         //删除
         private void Handle(WebAppChanged evnt)

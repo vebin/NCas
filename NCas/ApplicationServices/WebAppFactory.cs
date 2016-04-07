@@ -13,8 +13,9 @@ namespace NCas.ApplicationServices
     [Component]
     public class WebAppFactory
     {
-        private  List<WebAppInfoDto> WebAppDict = new List<WebAppInfoDto>();
+        private  List<WebAppInfoDto> _webAppDict = new List<WebAppInfoDto>();
         private readonly IWebAppQueryService _webAppQueryService;
+        // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
         private readonly IScheduleService _scheduleService;
         public WebAppFactory()
         {
@@ -25,8 +26,9 @@ namespace NCas.ApplicationServices
         {
             _scheduleService = scheduleService;
             _webAppQueryService = webAppQueryService;
+            LoadWebApp();
             _scheduleService.StartTask("LoadWebApp", LoadWebApp, 1000,
-                1000*60);
+                1000*60*5);
         }
 
 
@@ -34,19 +36,19 @@ namespace NCas.ApplicationServices
         /// </summary>
         public WebAppInfoDto GetWebAppByUrl(string url)
         {
-            return WebAppDict.FirstOrDefault(x => PathUtils.SameDomain(x.Url, url));
+            return _webAppDict.FirstOrDefault(x => PathUtils.SameDomain(x.Url, url));
         }
 
         /// <summary>根据WebAppId获取WebApp信息
         /// </summary>
         public WebAppInfoDto GetWebAppById(string id)
         {
-            return WebAppDict.FirstOrDefault(x => x.WebAppId == id);
+            return _webAppDict.FirstOrDefault(x => x.WebAppId == id);
         }
 
         private void LoadWebApp()
         {
-            WebAppDict = _webAppQueryService.FindAll().ToList();
+            _webAppDict = _webAppQueryService.FindAll().ToList();
         }
 
 

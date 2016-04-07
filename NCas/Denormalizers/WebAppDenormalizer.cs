@@ -13,6 +13,7 @@ namespace NCas.Denormalizers
     public class WebAppDenormalizer
         : AbstractDenormalizer
         , IMessageHandler<WebAppCreated>                                                  //创建网站节点
+        , IMessageHandler<WebAppUpdated>                                                  //更新网站节点
         , IMessageHandler<WebAppChanged>                                                  //删除网站节点
     {
 
@@ -38,6 +39,29 @@ namespace NCas.Denormalizers
             });
         }
 
+        /// <summary>更新网站节点
+        /// </summary>
+        public Task<AsyncTaskResult> HandleAsync(WebAppUpdated evnt)
+        {
+            return TryUpdateRecordAsync(connection =>
+            {
+                var info = evnt.Info;
+                return connection.UpdateAsync(new
+                {
+                    AppName = info.AppName,
+                    Url = info.Url,
+                    VerifyTicketUrl = info.VerifyTicketUrl,
+                    NotifyUrl = info.NotifyUrl,
+                    Version=evnt.Version,
+                    EventSequence=evnt.Sequence
+                }, new
+                {
+                    WebAppId=evnt.AggregateRootId,
+                    Version=evnt.Version-1
+                }, ConfigSettings.WebAppTable);
+            });
+        }
+
         /// <summary>删除网站节点
         /// </summary>
         public Task<AsyncTaskResult> HandleAsync(WebAppChanged evnt)
@@ -49,7 +73,7 @@ namespace NCas.Denormalizers
                 EventSequence = evnt.Sequence
             }, new
             {
-                AccountId = evnt.AggregateRootId,
+                WebAppId = evnt.AggregateRootId,
                 Version = evnt.Version - 1
             }, ConfigSettings.WebAppTable));
         }

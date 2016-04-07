@@ -12,11 +12,11 @@ namespace NCas.ProcessorHost
 {
     public class Bootstrap
     {
-        private static ILogger _logger;
-        private static ECommonConfiguration _ecommonConfiguration;
-        private static ENodeConfiguration _enodeConfiguration;
+        private  ILogger _logger;
+        private  ECommonConfiguration _ecommonConfiguration;
+        private  ENodeConfiguration _enodeConfiguration;
 
-        public static void Initialize()
+        public  void Initialize()
         {
             InitializeECommon();
             try
@@ -29,7 +29,7 @@ namespace NCas.ProcessorHost
                 throw;
             }
         }
-        public static void Start()
+        public  void Start()
         {
             try
             {
@@ -41,7 +41,7 @@ namespace NCas.ProcessorHost
                 throw;
             }
         }
-        public static void Stop()
+        public  void Stop()
         {
             try
             {
@@ -54,7 +54,7 @@ namespace NCas.ProcessorHost
             }
         }
 
-        private static void InitializeECommon()
+        private  void InitializeECommon()
         {
             _ecommonConfiguration = ECommonConfiguration
                 .Create()
@@ -66,7 +66,8 @@ namespace NCas.ProcessorHost
             _logger = ObjectContainer.Resolve<ILoggerFactory>().Create(typeof(Bootstrap).FullName);
             _logger.Info("ECommon initialized.");
         }
-        private static void InitializeENode()
+
+        private void InitializeENode()
         {
             ConfigSettings.Initialize();
 
@@ -93,7 +94,8 @@ namespace NCas.ProcessorHost
                 .InitializeBusinessAssemblies(assemblies);
 
             #region 锁
-            ObjectContainer.Resolve<ILockService>().AddLockKey(typeof(Account).Name);
+
+            ObjectContainer.Resolve<ILockService>().AddLockKey(typeof (Account).Name);
             //ObjectContainer.Resolve<ILockService>().AddLockKey(typeof(Position).Name);
 
             //ObjectContainer.Resolve<ILockService>().AddLockKey(typeof(Subject).Name);
@@ -103,6 +105,7 @@ namespace NCas.ProcessorHost
             //ObjectContainer.Resolve<ILockService>().AddLockKey(typeof(School).Name);
             //ObjectContainer.Resolve<ILockService>().AddLockKey(typeof(SchoolPosition).Name);
             //ObjectContainer.Resolve<ILockService>().AddLockKey(typeof(Teacher).Name);
+
             #endregion
 
             _logger.Info("ENode initialized.");

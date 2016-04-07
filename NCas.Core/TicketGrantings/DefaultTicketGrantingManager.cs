@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Security.Cryptography;
 using ECommon.Components;
+using ECommon.Logging;
+using ECommon.Serializing;
 using GUtils.Encrypt;
-using GUtils.Logging;
-using GUtils.Serializing;
 using GUtils.Utilities;
 
 namespace NCas.Core.TicketGrantings
@@ -81,6 +82,15 @@ namespace NCas.Core.TicketGrantings
 
             }
             return null;
+        }
+
+        /// <summary>加密生成返回的Account
+        /// </summary>
+        public string BackAccount(AccountInfo account)
+        {
+            var accountBack = new AccountBack(account.Code, account.AccountName);
+            var json = _jsonSerializer.Serialize(accountBack);
+            return EncryptHelper.AesEncryString(json);
         }
 
     }

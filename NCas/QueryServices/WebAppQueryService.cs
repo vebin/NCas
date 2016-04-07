@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using ECommon.Components;
 using ECommon.Dapper;
 using NCas.Common;
@@ -9,7 +10,7 @@ namespace NCas.QueryServices
 {
     /// <summary>网站节点查询
     /// </summary>
-     [Component]
+    [Component]
     public class WebAppQueryService : BaseQueryService, IWebAppQueryService
     {
         /// <summary>查询所有的节点
@@ -25,7 +26,19 @@ namespace NCas.QueryServices
             }
         }
 
-
+        /// <summary>根据WebAppId查询WebApp信息
+        /// </summary>
+        public WebAppInfoDto FindById(string webAppId)
+        {
+            using (var connection=GetConnection())
+            {
+                return connection.QueryList<WebAppInfoDto>(new
+                {
+                    UseFlag=(int)UseFlag.Useable,
+                    WebAppId=webAppId
+                }, ConfigSettings.WebAppTable).FirstOrDefault();
+            }
+        }
 
     }
 }

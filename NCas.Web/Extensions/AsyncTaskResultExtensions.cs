@@ -19,7 +19,11 @@ namespace NCas.Web.Extensions
         {
             if (result.Status != AsyncTaskStatus.Success || result.Data.Status == CommandStatus.Failed)
             {
-                return result.ErrorMessage;
+                if (result.ErrorMessage != null)
+                {
+                    return result.ErrorMessage;
+                }
+                return result.Data.Result;
             }
             return null;
         }

@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2008                    */
-/* Created on:     4/6 星期三 14:34:02                             */
+/* Created on:     4/7 星期四 17:27:58                             */
 /*==============================================================*/
 
 
@@ -13,18 +13,34 @@ go
 
 if exists (select 1
             from  sysindexes
-           where  id    = object_id('AccountIndex')
+           where  id    = object_id('AccountCodeIndex')
             and   name  = 'Index_AccountCode'
             and   indid > 0
             and   indid < 255)
-   drop index AccountIndex.Index_AccountCode
+   drop index AccountCodeIndex.Index_AccountCode
 go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('AccountIndex')
+           where  id = object_id('AccountCodeIndex')
             and   type = 'U')
-   drop table AccountIndex
+   drop table AccountCodeIndex
+go
+
+if exists (select 1
+            from  sysindexes
+           where  id    = object_id('AccountNameIndex')
+            and   name  = 'Index_AccountName'
+            and   indid > 0
+            and   indid < 255)
+   drop index AccountNameIndex.Index_AccountName
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('AccountNameIndex')
+            and   type = 'U')
+   drop table AccountNameIndex
 go
 
 if exists (select 1
@@ -67,22 +83,22 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 /*==============================================================*/
-/* Table: AccountIndex                                          */
+/* Table: AccountCodeIndex                                      */
 /*==============================================================*/
-create table AccountIndex (
+create table AccountCodeIndex (
    AccountId            varchar(36)          not null,
    Code                 nvarchar(50)         not null,
-   constraint PK_ACCOUNTINDEX primary key (AccountId)
+   constraint PK_ACCOUNTCODEINDEX primary key (AccountId)
 )
 go
 
 if exists (select 1 from  sys.extended_properties
-           where major_id = object_id('AccountIndex') and minor_id = 0)
+           where major_id = object_id('AccountCodeIndex') and minor_id = 0)
 begin 
    declare @CurrentUser sysname 
 select @CurrentUser = user_name() 
 execute sp_dropextendedproperty 'MS_Description',  
-   'user', @CurrentUser, 'table', 'AccountIndex' 
+   'user', @CurrentUser, 'table', 'AccountCodeIndex' 
  
 end 
 
@@ -90,14 +106,49 @@ end
 select @CurrentUser = user_name() 
 execute sp_addextendedproperty 'MS_Description',  
    '账号索引表', 
-   'user', @CurrentUser, 'table', 'AccountIndex'
+   'user', @CurrentUser, 'table', 'AccountCodeIndex'
 go
 
 /*==============================================================*/
 /* Index: Index_AccountCode                                     */
 /*==============================================================*/
-create unique index Index_AccountCode on AccountIndex (
+create unique index Index_AccountCode on AccountCodeIndex (
 Code ASC
+)
+go
+
+/*==============================================================*/
+/* Table: AccountNameIndex                                      */
+/*==============================================================*/
+create table AccountNameIndex (
+   AccountId            varchar(36)          not null,
+   AccountName          nvarchar(50)         not null,
+   constraint PK_ACCOUNTNAMEINDEX primary key (AccountId)
+)
+go
+
+if exists (select 1 from  sys.extended_properties
+           where major_id = object_id('AccountNameIndex') and minor_id = 0)
+begin 
+   declare @CurrentUser sysname 
+select @CurrentUser = user_name() 
+execute sp_dropextendedproperty 'MS_Description',  
+   'user', @CurrentUser, 'table', 'AccountNameIndex' 
+ 
+end 
+
+
+select @CurrentUser = user_name() 
+execute sp_addextendedproperty 'MS_Description',  
+   '账号名索引表', 
+   'user', @CurrentUser, 'table', 'AccountNameIndex'
+go
+
+/*==============================================================*/
+/* Index: Index_AccountName                                     */
+/*==============================================================*/
+create unique index Index_AccountName on AccountNameIndex (
+AccountName ASC
 )
 go
 

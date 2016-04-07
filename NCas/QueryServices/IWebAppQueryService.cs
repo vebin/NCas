@@ -10,5 +10,9 @@ namespace NCas.QueryServices
         /// <summary>查询所有的节点
         /// </summary>
         IEnumerable<WebAppInfoDto> FindAll();
+
+        /// <summary>根据WebAppId查询WebApp信息
+        /// </summary>
+        WebAppInfoDto FindById(string webAppId);
     }
 }

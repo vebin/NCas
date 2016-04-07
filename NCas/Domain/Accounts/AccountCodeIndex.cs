@@ -2,13 +2,13 @@
 {
     /// <summary>账号索引
     /// </summary>
-    public class AccountIndex
+    public class AccountCodeIndex
     {
         public string AccountId { get; set; }
 
         public string Code { get; set; }
 
-        public AccountIndex(string accountId, string code)
+        public AccountCodeIndex(string accountId, string code)
         {
             AccountId = accountId;
             Code = code;

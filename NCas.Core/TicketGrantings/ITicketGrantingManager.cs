@@ -11,7 +11,9 @@
         /// <summary>生成TGC并写入cookie
         /// </summary>
         void SetTicketGranting(AccountInfo account);
-    
 
+        /// <summary>加密生成返回的Account
+        /// </summary>
+        string BackAccount(AccountInfo account);
     }
 }

@@ -1,4 +1,5 @@
-﻿using NCas.Core.Tickets;
+﻿using System.Web;
+using NCas.Core.Tickets;
 
 namespace NCas.Core.Utils
 {
@@ -12,7 +13,7 @@ namespace NCas.Core.Utils
         public static string GetLoginUrl(string webAppKey, string callBackUrl)
         {
             // ReSharper disable once UseStringInterpolation
-            return string.Format("/AccountLogin?WebAppKey={0}&CallBackUrl={1}", webAppKey, callBackUrl);
+            return string.Format("/Login?WebAppKey={0}&CallBackUrl={1}", webAppKey, callBackUrl);
         }
 
         public static string GetErrorUrl()
@@ -26,8 +27,17 @@ namespace NCas.Core.Utils
         public static string GetClientVerifyTicketUrl(WebAppInfo webApp, Ticket ticket, string callBackUrl)
         {
             // ReSharper disable once UseStringInterpolation
-            return string.Format(@"{0}?Ticket={1}&CallBackUrl={2}", webApp.VerifyTicketUrl, ticket.TicketValue,
-                callBackUrl);
+            return string.Format(@"{0}?Ticket={1}&CallBackUrl={2}", webApp.VerifyTicketUrl, ticket.GetEncryptTicket(),
+                HttpUtility.UrlEncode(callBackUrl));
+        }
+
+        /// <summary>获取客户端设置Account的地址
+        /// </summary>
+        public static string GetClientPutUrl(WebAppInfo webApp, string account, string callBackUrl)
+        {
+            // ReSharper disable once UseStringInterpolation
+            return string.Format(@"{0}?Account={1}&CallBackUrl={2}", webApp.VerifyTicketUrl, account,
+                HttpUtility.UrlEncode(callBackUrl));
         }
 
     }

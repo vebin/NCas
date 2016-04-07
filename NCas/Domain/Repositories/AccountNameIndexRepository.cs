@@ -10,53 +10,51 @@ using NCas.Domain.Accounts;
 
 namespace NCas.Domain.Repositories
 {
-    /// <summary>账号仓储
+    /// <summary>账号名称索引仓储
     /// </summary>
     [Component]
-    public class AccountRepository : BaseRepository, IAccountRepository
+    public class AccountNameIndexRepository :BaseRepository, IAccountNameIndexRepository
     {
-
-        /// <summary>根据Code查询账号索引
+        /// <summary>根据AccountName查询账号索引
         /// </summary>
-        public AccountIndex FindAccountIndex(string code)
+        public AccountNameIndex FindAccountNameIndex(string accountName)
         {
             using (var connection = GetConnection())
             {
                 connection.Open();
                 return
-                    connection.QueryList<AccountIndex>(new {Code = code}, ConfigSettings.AccountIndexTable)
+                    connection.QueryList<AccountNameIndex>(new { AccountName = accountName }, ConfigSettings.AccountNameIndexTable)
                         .FirstOrDefault();
             }
         }
 
-        /// <summary>添加账号索引
+        /// <summary>添加账号名称索引
         /// </summary>
-        public void AddIndex(AccountIndex index)
+        public void AddNameIndex(AccountNameIndex index)
         {
             using (var connection = GetConnection())
             {
                 connection.Open();
                 connection.Insert(new
                 {
-                    AccountId=index.AccountId,
-                    Code=index.Code
-                },ConfigSettings.AccountIndexTable);
+                    AccountId = index.AccountId,
+                    AccountName = index.AccountName
+                }, ConfigSettings.AccountNameIndexTable);
             }
         }
 
-        /// <summary>根据账号Id删除索引
+        /// <summary>根据账号Id删除名称索引
         /// </summary>
-        public void DeleteIndex(string accountId)
+        public void DeleteNameIndex(string accountId)
         {
-            using (var connection=GetConnection())
+            using (var connection = GetConnection())
             {
                 connection.Open();
                 connection.Delete(new
                 {
-                    AccountId=accountId
-                }, ConfigSettings.AccountIndexTable);
+                    AccountId = accountId
+                }, ConfigSettings.AccountNameIndexTable);
             }
         }
-
     }
 }

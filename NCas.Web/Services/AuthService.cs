@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Web;
+using System.Web.Mvc;
 using ECommon.Components;
 using NCas.ApplicationServices;
 using NCas.Core.TicketGrantings;
@@ -31,6 +32,7 @@ namespace NCas.Web.Services
         /// </summary>
         public ActionResult Verify(AccountInfo account, string webAppKey, string callBackUrl)
         {
+            callBackUrl = HttpUtility.UrlEncode(callBackUrl);
             //账号为null,重定向到登陆页面
             if (account == null)
             {
@@ -42,9 +44,10 @@ namespace NCas.Web.Services
             //产生票据,跳转验证地址
             var ticket = _ticketManager.CreateTicket(account.AccountId, account.Code);
             //跳转到客户端验证页面
-            return
-                new RedirectResult(UrlUtils.GetClientVerifyTicketUrl(WebAppMapper.ToWebApp(webAppDto), ticket,
-                    callBackUrl));
+            var url = UrlUtils.GetClientVerifyTicketUrl(WebAppMapper.ToWebApp(webAppDto), ticket,
+                callBackUrl);
+
+            return new RedirectResult(url);
         }
     }
 }

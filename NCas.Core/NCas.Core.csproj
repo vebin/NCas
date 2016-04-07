@@ -72,6 +72,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TicketGrantings\AccountBack.cs" />
     <Compile Include="TicketGrantings\AccountInfo.cs" />
     <Compile Include="TicketGrantings\DefaultTicketGrantingManager.cs" />
     <Compile Include="TicketGrantings\ITicketGrantingManager.cs" />
