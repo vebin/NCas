@@ -51,7 +51,6 @@ namespace NCas.Web
             var assemblies = new[]
             {
                 Assembly.Load("NCas"),
-                Assembly.Load("NCas.Core"),
                 Assembly.GetExecutingAssembly()
             };
 

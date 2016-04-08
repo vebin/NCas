@@ -33,12 +33,12 @@ namespace NCas.Client.Utils
         /// </summary>
         public static string VerifyTicketBaseUrl
         {
-            get { return PathUtils.CombineUrl(ServerUrl, "/VerityTicket"); }
+            get { return PathUtils.CombineUrl(ServerUrl, "/VerifyTicket"); }
         }
 
         /// <summary>获取服务器端带返回地址的Url
         /// </summary>
-        public static string GetServerAuthUrlWithCallBack(string callBackUrl)
+        public static string GetServerAuthUrl(string callBackUrl)
         {
             return PathUtils.GetUrlWithIncreaseParam(ServerAuthUrl, "CallBackUrl", HttpUtility.UrlEncode(callBackUrl));
         }
@@ -56,6 +56,7 @@ namespace NCas.Client.Utils
             return PathUtils.GetUrlWithIncreaseParams(VerifyTicketBaseUrl, dict);
         }
 
+       
 
 
     }

@@ -15,6 +15,9 @@ namespace NCas.Commands.WebApps
         /// <summary>验证Ticket地址
         /// </summary>
         public string VerifyTicketUrl { get; set; }
+        /// <summary>设置账号信息Url
+        ///  </summary>
+        public string PutAccountUrl { get; set; }
 
         /// <summary>通知某账号登出地址
         /// </summary>
@@ -26,11 +29,12 @@ namespace NCas.Commands.WebApps
         }
 
         public UpdateWebApp(string id, string appName, string url, string verifyTicketUrl,
-            string notifyUrl) : base(id)
+            string putAccountUrl, string notifyUrl) : base(id)
         {
             AppName = appName;
             Url = url;
             VerifyTicketUrl = verifyTicketUrl;
+            PutAccountUrl = putAccountUrl;
             NotifyUrl = notifyUrl;
         }
     }

@@ -38,7 +38,7 @@ namespace NCas.Web.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(CreateWebAppDto dto)
         {
-            var command = dto.ToCreateWebApp();
+            var command = dto.ToCommand();
             var result = await ExecuteCommandAsync(command);
             if (!result.IsSuccess())
             {
@@ -52,19 +52,19 @@ namespace NCas.Web.Controllers
         public ActionResult Edit(string webAppId)
         {
             var webAppInfoDto = _webAppQueryService.FindById(webAppId);
-            ViewData.Model = EditWebAppDto.GetFromWebAppInfoDto(webAppInfoDto);
+            ViewData.Model = webAppInfoDto.ToEditWebAppDto();
             return View();
         }
 
         [HttpPost]
         public async Task<ActionResult> Edit(EditWebAppDto dto)
         {
-            var command = dto.ToUpdateWebApp();
+            var command = dto.ToCommand();
             var result = await ExecuteCommandAsync(command);
             if (!result.IsSuccess())
             {
                 ModelState.AddModelError(string.Empty, result.GetErrorMessage());
-                var model = EditWebAppDto.GetFromWebAppInfoDto(_webAppQueryService.FindById(dto.WebAppId));
+                var model = _webAppQueryService.FindById(dto.WebAppId).ToEditWebAppDto();
                 return View(model);
             }
             return RedirectToAction("Index");

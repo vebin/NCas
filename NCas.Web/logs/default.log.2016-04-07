@@ -1,0 +1,117 @@
+2016-04-07 16:29:08,069  INFO - ECommon initialized.
+2016-04-07 16:30:26,037  INFO - ECommon initialized.
+2016-04-07 16:30:26,149  INFO - ENode initialized.
+2016-04-07 16:40:42,933  INFO - ECommon initialized.
+2016-04-07 16:40:43,065  INFO - ENode initialized.
+2016-04-07 17:28:52,710  INFO - ECommon initialized.
+2016-04-07 17:28:52,825  INFO - ENode initialized.
+2016-04-07 18:13:20,420  INFO - ECommon initialized.
+2016-04-07 18:13:20,534  INFO - ENode initialized.
+2016-04-07 18:14:37,082  INFO - ECommon initialized.
+2016-04-07 18:14:37,197  INFO - ENode initialized.
+2016-04-07 18:20:40,493  INFO - ECommon initialized.
+2016-04-07 18:20:40,595  INFO - ENode initialized.
+2016-04-07 18:21:38,685  INFO - ECommon initialized.
+2016-04-07 18:21:38,818  INFO - ENode initialized.
+2016-04-07 18:23:38,292 ERROR - System.TimeoutException: The operation has timed out.
+   在 ECommon.Extensions.TaskExtensions.<TimeoutAfter>d__2`1.MoveNext() 位置 F:\MyProjects\ecommon\src\ECommon\Extensions\TaskExtensions.cs:行号 41
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   在 NCas.Web.Controllers.WebAppController.<Create>d__0.MoveNext() 位置 f:\VS_Common\NCas\NCas.Web\Controllers\WebAppController.cs:行号 42
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   在 System.Threading.Tasks.TaskHelpersExtensions.ThrowIfFaulted(Task task)
+   在 System.Web.Mvc.Async.TaskAsyncActionDescriptor.EndExecute(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeAsynchronousActionMethod>b__36(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2016-04-07 18:30:55,429  INFO - ECommon initialized.
+2016-04-07 18:30:55,560  INFO - ENode initialized.
+2016-04-07 18:34:59,658  INFO - ECommon initialized.
+2016-04-07 18:34:59,768  INFO - ENode initialized.
+2016-04-07 18:38:49,009  INFO - ECommon initialized.
+2016-04-07 18:38:49,132  INFO - ENode initialized.
+2016-04-07 18:44:32,230  INFO - ECommon initialized.
+2016-04-07 18:44:32,547  INFO - ENode initialized.
+2016-04-07 18:53:59,399  INFO - ECommon initialized.
+2016-04-07 18:53:59,538  INFO - ENode initialized.
+2016-04-07 18:56:44,439  INFO - ECommon initialized.
+2016-04-07 18:56:44,557  INFO - ENode initialized.
+2016-04-07 18:58:12,208 ERROR - System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 NCas.Core.TicketGrantings.DefaultTicketGrantingManager.EncodeCookie(AccountInfo account) 位置 f:\VS_Common\NCas\NCas.Core\TicketGrantings\DefaultTicketGrantingManager.cs:行号 63
+   在 NCas.Core.TicketGrantings.DefaultTicketGrantingManager.SetTicketGranting(AccountInfo account) 位置 f:\VS_Common\NCas\NCas.Core\TicketGrantings\DefaultTicketGrantingManager.cs:行号 44
+   在 NCas.Web.Controllers.AuthController.Login(AccountLoginDto dto) 位置 f:\VS_Common\NCas\NCas.Web\Controllers\AuthController.cs:行号 90
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.ActionInvocation.InvokeSynchronousActionMethod()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2016-04-07 18:58:24,760 ERROR - System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 NCas.Core.TicketGrantings.DefaultTicketGrantingManager.EncodeCookie(AccountInfo account) 位置 f:\VS_Common\NCas\NCas.Core\TicketGrantings\DefaultTicketGrantingManager.cs:行号 63
+   在 NCas.Core.TicketGrantings.DefaultTicketGrantingManager.SetTicketGranting(AccountInfo account) 位置 f:\VS_Common\NCas\NCas.Core\TicketGrantings\DefaultTicketGrantingManager.cs:行号 44
+   在 NCas.Web.Controllers.AuthController.Login(AccountLoginDto dto) 位置 f:\VS_Common\NCas\NCas.Web\Controllers\AuthController.cs:行号 90
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.ActionInvocation.InvokeSynchronousActionMethod()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2016-04-07 19:02:50,047  INFO - ECommon initialized.
+2016-04-07 19:02:50,158  INFO - ENode initialized.
+2016-04-07 19:04:54,605  INFO - ECommon initialized.
+2016-04-07 19:04:54,740  INFO - ENode initialized.
+2016-04-07 19:07:01,400 ERROR - DecodeCookie Error:Unexpected character encountered while parsing value: C. Path '', line 0, position 0.
+2016-04-07 19:09:45,459  INFO - ECommon initialized.
+2016-04-07 19:09:45,578  INFO - ENode initialized.
+2016-04-07 19:15:20,957  INFO - ECommon initialized.
+2016-04-07 19:15:21,097  INFO - ENode initialized.
+2016-04-07 20:01:42,311  INFO - ECommon initialized.
+2016-04-07 20:01:42,423  INFO - ENode initialized.
+2016-04-07 20:03:04,379  INFO - ECommon initialized.
+2016-04-07 20:03:04,740  INFO - ENode initialized.
+2016-04-07 20:04:05,881  INFO - ECommon initialized.
+2016-04-07 20:04:06,011  INFO - ENode initialized.
+2016-04-07 20:07:29,491  INFO - ECommon initialized.
+2016-04-07 20:07:29,622  INFO - ENode initialized.

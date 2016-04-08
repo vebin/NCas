@@ -1,4 +1,6 @@
-﻿using GUtils.Encrypt;
+﻿using System.Web;
+using GUtils.Encrypt;
+using GUtils.Serializing;
 
 namespace NCas.Client.Utils
 {
@@ -11,6 +13,13 @@ namespace NCas.Client.Utils
             return EncryptHelper.AesDecryString(ticket, password: "123456");
         }
 
+        public static Account DecryptAccount(string encryptAccount,string key)
+        {
+            var jsonAccount = EncryptHelper.AesDecryString(encryptAccount, password: key);
+            IJsonSerializer serializer=new DefaultJsonSerializer();
+            var account = serializer.Deserialize<Account>(jsonAccount);
+            return account;
+        }
         
     }
 }

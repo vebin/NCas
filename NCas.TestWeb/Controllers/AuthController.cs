@@ -22,12 +22,17 @@ namespace NCas.TestWeb.Controllers
             return Redirect(url);
         }
 
-        /// <summary>Cas服务器将TGC
+        /// <summary>Cas服务器将TGC的Ticket
         /// </summary>
         [HttpGet]
         public ActionResult PutAccount()
         {
-            return View();
+            var encryptAccount = RequestUtils.GetString("Account");
+            var callBackUrl = RequestUtils.GetString("CallBackUrl");
+            var key = RequestUtils.GetString("key");
+            var account = EncryptUtils.DecryptAccount(encryptAccount, key);
+            CookieUtils.WriteCookie("Account", account.Code, null);
+            return Redirect(callBackUrl);
         }
 
     }

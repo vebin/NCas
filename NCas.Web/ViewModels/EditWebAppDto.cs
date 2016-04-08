@@ -1,4 +1,5 @@
-﻿using NCas.Commands.WebApps;
+﻿using System.Security.Policy;
+using NCas.Commands.WebApps;
 using NCas.QueryServices.Dtos;
 
 namespace NCas.Web.ViewModels
@@ -7,7 +8,7 @@ namespace NCas.Web.ViewModels
     {
 
         public string WebAppId { get; set; }
-        
+
         /// <summary>应用名称
         /// </summary>
         public string AppName { get; set; }
@@ -20,36 +21,37 @@ namespace NCas.Web.ViewModels
         /// </summary>
         public string VerifyTicketUrl { get; set; }
 
+        /// <summary>设置账号Url
+        /// </summary>
+        public string PutAccountUrl { get; set; }
+
         /// <summary>通知某账号登出地址
         /// </summary>
         public string NotifyUrl { get; set; }
 
         public EditWebAppDto()
         {
-            
+
         }
-        public EditWebAppDto(string webAppId, string appName, string url, string verifyTicketUrl, string notifyUrl)
+
+        public EditWebAppDto(string webAppId, string appName, string url, string verifyTicketUrl, string putAccountUrl,
+            string notifyUrl)
         {
             WebAppId = webAppId;
             AppName = appName;
             Url = url;
             VerifyTicketUrl = verifyTicketUrl;
+            PutAccountUrl = putAccountUrl;
             NotifyUrl = notifyUrl;
         }
 
-        public static EditWebAppDto GetFromWebAppInfoDto(WebAppInfoDto dto)
+        public UpdateWebApp ToCommand()
         {
-            return new EditWebAppDto(dto.WebAppId, dto.AppName, dto.Url, dto.VerifyTicketUrl, dto.NotifyUrl);
+            return new UpdateWebApp(WebAppId, AppName, Url, VerifyTicketUrl, PutAccountUrl, NotifyUrl);
         }
+
     }
 
-    public static class EditWebAppDtoExtension
-    {
-        public static UpdateWebApp ToUpdateWebApp(this EditWebAppDto dto)
-        {
-            return new UpdateWebApp(dto.WebAppId, dto.AppName, dto.Url, dto.VerifyTicketUrl, dto.NotifyUrl);
-        }
-    }
 
 
 }

@@ -46,7 +46,8 @@ namespace NCas.Domain.WebApps
         private void Handle(WebAppUpdated evnt)
         {
             var editableInfo = evnt.Info;
-            _info = new WebAppInfo(_info.AppKey, editableInfo.AppName, editableInfo.Url, editableInfo.VerifyTicketUrl,
+            _info = new WebAppInfo(_info.AppKey, editableInfo.AppName, editableInfo.Url, editableInfo.PutAccountUrl,
+                editableInfo.VerifyTicketUrl,
                 editableInfo.NotifyUrl);
         }
 

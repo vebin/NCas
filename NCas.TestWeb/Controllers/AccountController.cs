@@ -16,7 +16,7 @@ namespace NCas.TestWeb.Controllers
             {
                 if (HttpContext.Request.Url != null)
                 {
-                    var url = NCasServerSetting.GetServerAuthUrlWithCallBack(HttpContext.Request.Url.ToString());
+                    var url = NCasServerSetting.GetServerAuthUrl(HttpContext.Request.Url.ToString());
                     return Redirect(url);
                 }
             }

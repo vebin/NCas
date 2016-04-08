@@ -31,6 +31,7 @@ namespace NCas.Denormalizers
                     AppName=info.AppName,
                     Url=info.Url,
                     VerifyTicketUrl=info.VerifyTicketUrl,
+                    PutAccountUrl=info.PutAccountUrl,
                     NotifyUrl=info.NotifyUrl,
                     UseFlag = (int)UseFlag.Useable,
                     Version = evnt.Version,
@@ -51,6 +52,7 @@ namespace NCas.Denormalizers
                     AppName = info.AppName,
                     Url = info.Url,
                     VerifyTicketUrl = info.VerifyTicketUrl,
+                    PutAccountUrl=info.PutAccountUrl,
                     NotifyUrl = info.NotifyUrl,
                     Version=evnt.Version,
                     EventSequence=evnt.Sequence

@@ -72,6 +72,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -81,7 +82,6 @@
   <ItemGroup>
     <Compile Include="ApplicationServices\AccountService.cs" />
     <Compile Include="ApplicationServices\IAccountService.cs" />
-    <Compile Include="ApplicationServices\WebAppFactory.cs" />
     <Compile Include="CommandHandlers\AccountCommandHandler.cs" />
     <Compile Include="CommandHandlers\WebAppCommandHandler.cs" />
     <Compile Include="Commands\Accounts\ChangeAccount.cs" />
@@ -91,6 +91,23 @@
     <Compile Include="Commands\WebApps\ChangeWebApp.cs" />
     <Compile Include="Commands\WebApps\CreateWebApp.cs" />
     <Compile Include="Commands\WebApps\UpdateWebApp.cs" />
+    <Compile Include="Core\TicketGrantings\AccountBack.cs" />
+    <Compile Include="Core\TicketGrantings\AccountInfo.cs" />
+    <Compile Include="Core\TicketGrantings\DefaultTicketGrantingManager.cs" />
+    <Compile Include="Core\TicketGrantings\ITicketGrantingManager.cs" />
+    <Compile Include="Core\TicketGrantings\TicketGranting.cs" />
+    <Compile Include="Core\TicketGrantings\TicketGrantingSetting.cs" />
+    <Compile Include="Core\Tickets\DefaultTicketManager.cs" />
+    <Compile Include="Core\Tickets\ITicketManager.cs" />
+    <Compile Include="Core\Tickets\Ticket.cs" />
+    <Compile Include="Core\Tickets\TicketAccount.cs" />
+    <Compile Include="Core\Tickets\TicketSetting.cs" />
+    <Compile Include="Core\Utils\UrlUtils.cs" />
+    <Compile Include="Core\WebAppInfo.cs" />
+    <Compile Include="Core\WebApps\DefaultWebAppManager.cs" />
+    <Compile Include="Core\WebApps\IWebAppManager.cs" />
+    <Compile Include="Core\WebApps\WebAppCache.cs" />
+    <Compile Include="Core\WebApps\WebAppCacheSetting.cs" />
     <Compile Include="Denormalizers\AbstractDenormalizer.cs" />
     <Compile Include="Denormalizers\AccountDenormalizer.cs" />
     <Compile Include="Denormalizers\WebAppDenormalizer.cs" />

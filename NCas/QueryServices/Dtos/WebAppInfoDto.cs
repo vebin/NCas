@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NCas.QueryServices.Dtos
+﻿namespace NCas.QueryServices.Dtos
 {
     /// <summary>网站节点信息
     /// </summary>
@@ -25,6 +19,10 @@ namespace NCas.QueryServices.Dtos
         /// <summary>验证Ticket地址
         /// </summary>
         public string VerifyTicketUrl { get; set; }
+        /// <summary>设置账号Url
+        /// </summary>
+        public string PutAccountUrl { get; set; }
+
         /// <summary>通知某账号登出地址
         /// </summary>
         public string NotifyUrl { get; set; }
@@ -33,13 +31,15 @@ namespace NCas.QueryServices.Dtos
         {
         }
 
-        public WebAppInfoDto(string webAppId, string appKey, string appName, string url, string verifyTicketUrl, string notifyUrl)
+        public WebAppInfoDto(string webAppId, string appKey, string appName, string url, string verifyTicketUrl,
+            string putAccountUrl, string notifyUrl)
         {
             WebAppId = webAppId;
             AppKey = appKey;
             AppName = appName;
             Url = url;
             VerifyTicketUrl = verifyTicketUrl;
+            PutAccountUrl = putAccountUrl;
             NotifyUrl = notifyUrl;
         }
     }

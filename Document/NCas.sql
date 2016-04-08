@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2008                    */
-/* Created on:     4/7 星期四 17:27:58                             */
+/* Created on:     4/8 星期五 10:12:14                             */
 /*==============================================================*/
 
 
@@ -161,6 +161,7 @@ create table WebApp (
    AppName              nvarchar(50)         not null,
    Url                  nvarchar(128)        not null,
    VerifyTicketUrl      nvarchar(128)        not null,
+   PutAccountUrl        nvarchar(128)        not null,
    NotifyUrl            nvarchar(128)        not null,
    UseFlag              int                  not null,
    Version              bigint               not null,

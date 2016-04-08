@@ -13,7 +13,7 @@ namespace NCas.Web.ViewModels
         public string Password { get; set; }
 
         [Required]
-        public string WebAppKey { get; set; }
+        public string CacheKey { get; set; }
 
         [Required]
         public string CallBackUrl { get; set; }

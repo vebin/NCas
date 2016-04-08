@@ -17,6 +17,9 @@ namespace NCas.Web.ViewModels
         /// <summary>验证Ticket地址
         /// </summary>
         public string VerifyTicketUrl { get; set; }
+        /// <summary>设置账号信息Url
+        /// </summary>
+        public string PutAccountUrl { get; set; }
 
         /// <summary>通知某账号登出地址
         /// </summary>
@@ -24,25 +27,25 @@ namespace NCas.Web.ViewModels
 
         public CreateWebAppDto()
         {
-            
+
         }
-        public CreateWebAppDto(string appName, string url, string verifyTicketUrl, string notifyUrl)
+
+        public CreateWebAppDto(string appName, string url, string verifyTicketUrl,string putAccountUrl, string notifyUrl)
         {
             AppName = appName;
             Url = url;
             VerifyTicketUrl = verifyTicketUrl;
+            PutAccountUrl = putAccountUrl;
             NotifyUrl = notifyUrl;
         }
-    }
 
-    public static class CreateWebAppDtoExtension
-    {
-        public static CreateWebApp ToCreateWebApp(this CreateWebAppDto dto)
+        public CreateWebApp ToCommand()
         {
             var id = Guid.NewGuid().ToString("N");
-            var command = new CreateWebApp(id, WebAppUtils.CreateWebAppKey(), dto.AppName, dto.Url, dto.VerifyTicketUrl,
-                dto.NotifyUrl);
+            var command = new CreateWebApp(id, WebAppUtils.CreateWebAppKey(), AppName, Url,
+                VerifyTicketUrl, PutAccountUrl, NotifyUrl);
             return command;
         }
+
     }
 }

@@ -26,6 +26,11 @@ namespace NCas.Web
             );
 
             routes.MapRoute(
+             name: "NCas.VerifyTicket",
+             url: "VerifyTicket",
+             defaults: new { controller = "Auth", action = "VerifyTicket" }
+         );
+            routes.MapRoute(
                 name: "NCas.Verify",
                 url: "Verify",
                 defaults: new { controller = "Auth", action = "Verify" }
