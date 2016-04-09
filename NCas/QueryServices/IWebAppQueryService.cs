@@ -14,5 +14,9 @@ namespace NCas.QueryServices
         /// <summary>根据WebAppId查询WebApp信息
         /// </summary>
         WebAppInfoDto FindById(string webAppId);
+
+        /// <summary>根据WebAppKey查询WebApp信息
+        /// </summary>
+        WebAppInfoDto FindByKey(string webAppKey);
     }
 }

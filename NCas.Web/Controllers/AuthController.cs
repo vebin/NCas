@@ -3,6 +3,7 @@ using System.Web;
 using System.Web.Mvc;
 using ECommon.Extensions;
 using ECommon.IO;
+using ECommon.Logging;
 using ENode.Commanding;
 using GUtils.Utilities;
 using NCas.ApplicationServices;
@@ -22,16 +23,17 @@ namespace NCas.Web.Controllers
         private readonly ITicketManager _ticketManager;
         private readonly IWebAppManager _webAppManager;
         private readonly IAccountService _accountService;
-
+        private readonly ILogger _logger;
         public AuthController(ICommandService commandService, ITicketGrantingManager ticketGrantingManager,
             ITicketManager ticketManager,
-            IWebAppManager webAppManager, IAccountService accountService)
+            IWebAppManager webAppManager, IAccountService accountService, ILoggerFactory loggerFactory)
         {
             _commandService = commandService;
             _ticketGrantingManager = ticketGrantingManager;
             _ticketManager = ticketManager;
             _webAppManager = webAppManager;
             _accountService = accountService;
+            _logger = loggerFactory.Create(GetType().FullName);
         }
 
         /// <summary>验证页面,查看TGC是否存在,如果TGC不存在,那么就直接跳转到登陆页面,如果存在,则生成Ticket,跳转到客户端页面
@@ -43,8 +45,10 @@ namespace NCas.Web.Controllers
             var callBackUrl = RequestUtils.GetString("CallBackUrl");
             //根据CallBack地址 先拿到请求是属于哪一个客户端
             var webAppInfo = _webAppManager.GetWebAppInfoByUrl(callBackUrl);
+
             if (webAppInfo == null)
             {
+                _logger.InfoFormat("WebAppInfo:WebAppInfo is null. CallBackUrl is {0}", callBackUrl);
                 //如果该系统不存在,那么直接提示错误,或者其他信息
                 return Redirect(UrlUtils.GetErrorUrl());
             }
@@ -97,7 +101,7 @@ namespace NCas.Web.Controllers
         public ActionResult Login()
         {
             ViewData["CacheKey"] = RequestUtils.GetString("CacheKey");
-            ViewData["CallBackUrl"] = HttpUtility.UrlEncode(RequestUtils.GetString("CallBackUrl"));
+            ViewData["CallBackUrl"] = RequestUtils.GetString("CallBackUrl");
             //账号或者密码错误
             return View();
         }
@@ -136,8 +140,9 @@ namespace NCas.Web.Controllers
         public ActionResult LoginOut()
         {
             var callBackUrl = RequestUtils.GetString("CallBackUrl");
-
-            return View();
+            //移除TGC
+            _ticketGrantingManager.RemoveTicketGranting();
+            return Redirect(callBackUrl);
         }
 
         #endregion

@@ -12,34 +12,45 @@ namespace NCas.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
+            routes.IgnoreRoute("{*favicon}", new {favicon = @"(.*/)?favicon.ico(/.*)?"});
 
             routes.MapRoute(
                 name: "NCas.Account",
                 url: "Account/{action}/{id}",
-                defaults: new { controller = "Account", action = "Index", id = UrlParameter.Optional }
-            );
+                defaults: new {controller = "Account", action = "Index", id = UrlParameter.Optional}
+                );
             routes.MapRoute(
                 name: "NCas.WebApp",
                 url: "WebApp/{action}/{id}",
-                defaults: new { controller = "WebApp", action = "Index", id = UrlParameter.Optional }
-            );
+                defaults: new {controller = "WebApp", action = "Index", id = UrlParameter.Optional}
+                );
 
             routes.MapRoute(
-             name: "NCas.VerifyTicket",
-             url: "VerifyTicket",
-             defaults: new { controller = "Auth", action = "VerifyTicket" }
-         );
+                name: "NCas.VerifyTicket",
+                url: "VerifyTicket",
+                defaults: new {controller = "Auth", action = "VerifyTicket"}
+                );
             routes.MapRoute(
                 name: "NCas.Verify",
                 url: "Verify",
-                defaults: new { controller = "Auth", action = "Verify" }
-            );
+                defaults: new {controller = "Auth", action = "Verify"}
+                );
             routes.MapRoute(
                 name: "NCas.Login",
                 url: "Login",
-                defaults: new { controller = "Auth", action = "Login" }
-            );
+                defaults: new {controller = "Auth", action = "Login"}
+                );
+            routes.MapRoute(
+                name: "NCas.LoginOut",
+                url: "LoginOut",
+                defaults: new {controller = "Auth", action = "LoginOut"}
+                );
+
+            routes.MapRoute(
+                name: "NCas.Api",
+                url: "Api/{action}/{id}",
+                defaults: new {controller = "Business", action = "Index", id = UrlParameter.Optional}
+                );
         }
     }
 }

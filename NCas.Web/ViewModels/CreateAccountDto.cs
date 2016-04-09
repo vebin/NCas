@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using NCas.Commands.Accounts;
@@ -10,8 +11,15 @@ namespace NCas.Web.ViewModels
     /// </summary>
     public class CreateAccountDto
     {
+        [Required(AllowEmptyStrings = false,ErrorMessage = "Code不能为空")]
+        [StringLength(50,ErrorMessage = "Code在50字符以内")]
         public string Code { get; set; }
+
+        [Required(AllowEmptyStrings = false,ErrorMessage = "账号名不能为空")]
+        [StringLength(50,ErrorMessage = "账号名在50字符以内")]
         public string AccountName { get; set; }
+
+        [Required(AllowEmptyStrings = false,ErrorMessage = "账号密码不能为空")]
         public string Password { get; set; }
 
         public CreateAccountDto()

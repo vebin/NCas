@@ -3,10 +3,12 @@ using NCas.Commands.WebApps;
 
 namespace NCas.Web.ViewModels
 {
-    public class EditWebAppDto
+    public class UpdateWebAppDto
     {
         public string WebAppId { get; set; }
 
+        [Required(AllowEmptyStrings = false,ErrorMessage = "系统Key不能为空")]
+        public string WebAppKey { get; set; }
         /// <summary>应用名称
         /// </summary>
         [Required(AllowEmptyStrings = false, ErrorMessage = "系统名称不能为空")]
@@ -32,15 +34,15 @@ namespace NCas.Web.ViewModels
         [Required(AllowEmptyStrings = false, ErrorMessage = "通知地址不能为空")]
         public string NotifyUrl { get; set; }
 
-        public EditWebAppDto()
+        public UpdateWebAppDto()
         {
 
         }
 
-        public EditWebAppDto(string webAppId, string appName, string url, string verifyTicketUrl, string putAccountUrl,
+        public UpdateWebAppDto(string webAppKey, string appName, string url, string verifyTicketUrl, string putAccountUrl,
             string notifyUrl)
         {
-            WebAppId = webAppId;
+            WebAppKey = webAppKey;
             AppName = appName;
             Url = url;
             VerifyTicketUrl = verifyTicketUrl;
@@ -48,13 +50,14 @@ namespace NCas.Web.ViewModels
             NotifyUrl = notifyUrl;
         }
 
+        public void SetWebAppId(string webAppId)
+        {
+            WebAppId = webAppId;
+        }
+
         public UpdateWebApp ToCommand()
         {
             return new UpdateWebApp(WebAppId, AppName, Url, VerifyTicketUrl, PutAccountUrl, NotifyUrl);
         }
-
     }
-
-
-
 }

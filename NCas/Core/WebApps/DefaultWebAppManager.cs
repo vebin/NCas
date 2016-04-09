@@ -37,10 +37,9 @@ namespace NCas.Core.WebApps
         {
             _timeoutSecond = setting.WebAppInactiveSeconds;
             _logger = loggerFactory.Create(GetType().FullName);
-            scheduleService.StartTask("UpdateWebAppInfoDict", UpdateWebAppInfoDict, 1000,
-                setting.ScanExpiredWebAppIntervalSeconds);
-            _webAppQueryService = webAppQueryService;
             UpdateWebAppInfoDict();
+            scheduleService.StartTask("UpdateWebAppInfoDict", UpdateWebAppInfoDict, 1000, 1000*60*3);
+            _webAppQueryService = webAppQueryService;
         }
 
         /// <summary>生成对应的,用于数据库缓存的Key
@@ -122,7 +121,8 @@ namespace NCas.Core.WebApps
             }
         }
 
-
+        /// <summary>更新WebApp的操作
+        /// </summary>
         public void UpdateWebAppInfoDict()
         {
             var webAppInfoDtos = _webAppQueryService.FindAll();

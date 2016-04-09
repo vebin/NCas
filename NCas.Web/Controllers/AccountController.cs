@@ -1,7 +1,5 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
-using ECommon.Extensions;
-using ECommon.IO;
 using ENode.Commanding;
 using NCas.Commands.Accounts;
 using NCas.Common.Enums;
@@ -11,14 +9,12 @@ using NCas.Web.ViewModels;
 
 namespace NCas.Web.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
-        private readonly ICommandService _commandService;
         private readonly IAccountQueryService _accountQueryService;
 
-        public AccountController(ICommandService commandService, IAccountQueryService accountQueryService)
+        public AccountController(ICommandService commandService, IAccountQueryService accountQueryService):base(commandService)
         {
-            _commandService = commandService;
             _accountQueryService = accountQueryService;
         }
 
@@ -40,7 +36,7 @@ namespace NCas.Web.Controllers
         public async Task<ActionResult> Create(CreateAccountDto dto)
         {
             var command = dto.ToRegisterAccount();
-            var result =await _commandService.ExecuteAsync(command);
+            var result = await ExecuteCommandAsync(command);
             if (!result.IsSuccess())
             {
                 ModelState.AddModelError(string.Empty,result.GetErrorMessage());
@@ -53,18 +49,13 @@ namespace NCas.Web.Controllers
         public async Task<ActionResult> Delete(string accountId)
         {
             var command = new ChangeAccount(accountId, (int) UseFlag.Disabled);
-            var result = await _commandService.ExecuteAsync(command);
+            var result = await ExecuteCommandAsync(command);
             if (!result.IsSuccess())
             {
                 ModelState.AddModelError(string.Empty, result.GetErrorMessage());
                 return View("Index");
             }
             return RedirectToAction("Index");
-        }
-
-        private Task<AsyncTaskResult<CommandResult>> ExecuteCommandAsync(ICommand command, int millisecondsDelay = 5000)
-        {
-            return _commandService.ExecuteAsync(command, CommandReturnType.EventHandled).TimeoutAfter(millisecondsDelay);
         }
 
     }

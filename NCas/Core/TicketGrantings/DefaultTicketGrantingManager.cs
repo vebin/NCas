@@ -48,6 +48,13 @@ namespace NCas.Core.TicketGrantings
             CookieUtils.WriteCookie("TGC", cookieString, exp);
         }
 
+        /// <summary>移除cookie的 TGC
+        /// </summary>
+        public void RemoveTicketGranting()
+        {
+           CookieUtils.Remove("TGC");
+        }
+
         /// <summary>对TGC进行加密
         /// </summary>
         private string EncodeCookie(AccountInfo account)

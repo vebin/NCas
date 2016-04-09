@@ -40,5 +40,20 @@ namespace NCas.QueryServices
             }
         }
 
+
+        /// <summary>根据WebAppKey查询WebApp信息
+        /// </summary>
+        public WebAppInfoDto FindByKey(string webAppKey)
+        {
+            using (var connection=GetConnection())
+            {
+                return connection.QueryList<WebAppInfoDto>(new
+                {
+                    UseFlag = (int) UseFlag.Useable,
+                    WebAppKey = webAppKey
+                }, ConfigSettings.WebAppTable).FirstOrDefault();
+            }
+        }
+
     }
 }

@@ -12,6 +12,10 @@
         /// </summary>
         void SetTicketGranting(AccountInfo account);
 
+        /// <summary>移除cookie的 TGC
+        /// </summary>
+        void RemoveTicketGranting();
+
         /// <summary>加密生成返回的Account
         /// </summary>
         string BackAccount(AccountInfo account, out string key);
