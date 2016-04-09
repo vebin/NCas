@@ -20,6 +20,12 @@ namespace NCas.Client.Utils
             var account = serializer.Deserialize<Account>(jsonAccount);
             return account;
         }
-        
+
+        public static string DecryptAccountCode(string encryptAccount)
+        {
+            var code = EncryptHelper.AesDecryString(encryptAccount);
+            return code;
+        }
+
     }
 }

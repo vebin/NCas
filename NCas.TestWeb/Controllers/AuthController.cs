@@ -31,8 +31,27 @@ namespace NCas.TestWeb.Controllers
             var callBackUrl = RequestUtils.GetString("CallBackUrl");
             var key = RequestUtils.GetString("key");
             var account = EncryptUtils.DecryptAccount(encryptAccount, key);
+
+            /*
+             * 这里为客户端缓存操作,将账号缓存到session或者cache中去 
+            */
             CookieUtils.WriteCookie("Account", account.Code, null);
+            
             return Redirect(callBackUrl);
+        }
+
+        /// <summary>服务器端用来通知客户端登出
+        /// </summary>
+        [HttpGet]
+        public ActionResult Notify()
+        {
+            var encryptCode = RequestUtils.GetString("AccountCode");
+            //账号Code,在本系统中代表唯一的Id
+            var account = EncryptUtils.DecryptAccountCode(encryptCode);
+            /*
+             * 
+             */
+            return View();
         }
 
     }
