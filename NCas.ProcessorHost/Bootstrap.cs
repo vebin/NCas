@@ -78,7 +78,8 @@ namespace NCas.ProcessorHost
             };
             var setting = new ConfigurationSetting
             {
-                SqlDefaultConnectionString = ConfigSettings.ENodeConnectionString
+                DefaultDBConfigurationSetting =new DefaultDBConfigurationSetting(ConfigSettings.ENodeConnectionString)
+                //SqlDefaultConnectionString = ConfigSettings.ENodeConnectionString
             };
 
             _enodeConfiguration = _ecommonConfiguration
@@ -88,8 +89,7 @@ namespace NCas.ProcessorHost
                 .UseSqlServerLockService()
                 .UseSqlServerCommandStore()
                 .UseSqlServerEventStore()
-                .UseSqlServerSequenceMessagePublishedVersionStore()
-                .UseSqlServerMessageHandleRecordStore()
+                .UseSqlServerPublishedVersionStore()
                 .UseEQueue()
                 .InitializeBusinessAssemblies(assemblies);
 

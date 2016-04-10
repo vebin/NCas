@@ -3,7 +3,6 @@ using ECommon.Socketing;
 using ENode.Commanding;
 using ENode.Configurations;
 using ENode.EQueue;
-using ENode.EQueue.Commanding;
 using EQueue.Clients.Producers;
 using EQueue.Configurations;
 using NCas.Common;
