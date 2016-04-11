@@ -15,14 +15,14 @@ namespace NCas.Domain.WebApps
         /// </summary>
         public WebApp(string id, WebAppInfo info) : base(id)
         {
-            ApplyEvent(new WebAppCreated(this, info));
+            ApplyEvent(new WebAppCreated(info));
         }
 
         /// <summary>修改WebApp
         /// </summary>
         public void Update(WebAppEditableInfo info)
         {
-            ApplyEvent(new WebAppUpdated(this, info));
+            ApplyEvent(new WebAppUpdated(info));
         }
 
         /// <summary>删除节点
@@ -30,7 +30,7 @@ namespace NCas.Domain.WebApps
         public void Change(int useFlag)
         {
             Assert.IsNotInEnum("删除状态", typeof (UseFlag), useFlag);
-            ApplyEvent(new WebAppChanged(this, useFlag));
+            ApplyEvent(new WebAppChanged(useFlag));
         }
 
         #region Event Handle Methods

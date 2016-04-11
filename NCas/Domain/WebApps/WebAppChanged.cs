@@ -13,7 +13,7 @@ namespace NCas.Domain.WebApps
 
         }
 
-        public WebAppChanged(WebApp webApp, int useFlag) : base()
+        public WebAppChanged(int useFlag)
         {
             UseFlag = useFlag;
         }

@@ -15,7 +15,7 @@ namespace NCas.Domain.Accounts
             
         }
 
-        public AccountChanged(Account account, int useFlag) : base()
+        public AccountChanged(int useFlag)
         {
             UseFlag = useFlag;
         }

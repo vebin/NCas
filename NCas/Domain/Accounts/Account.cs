@@ -20,7 +20,7 @@ namespace NCas.Domain.Accounts
             Assert.IsNotNullOrEmpty("账号唯一编码", info.Code);
             Assert.IsNotNullOrEmpty("账号名", info.AccountName);
             Assert.IsNotNullOrEmpty("密码", info.Password);
-            ApplyEvent(new AccountRegistered(this, info));
+            ApplyEvent(new AccountRegistered(info));
         }
 
         /// <summary>修改账号名
@@ -28,21 +28,21 @@ namespace NCas.Domain.Accounts
         public void UpdateAccountName(string accountName)
         {
             Assert.IsNotNullOrEmpty("账号名", accountName);
-            ApplyEvent(new AccountNameUpdated(this, accountName));
+            ApplyEvent(new AccountNameUpdated(accountName));
         }
 
         /// <summary>修改密码
         /// </summary>
         public void UpdatePassword(string password)
         {
-            ApplyEvent(new AccountPasswordUpdated(this,password));
+            ApplyEvent(new AccountPasswordUpdated(password));
         }
 
         /// <summary>删除账号
         /// </summary>
         public void Change(int useFlag)
         {
-            ApplyEvent(new AccountChanged(this,useFlag));
+            ApplyEvent(new AccountChanged(useFlag));
         }
 
         #region Event Handle Methods

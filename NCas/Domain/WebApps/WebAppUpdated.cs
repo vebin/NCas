@@ -5,7 +5,6 @@ namespace NCas.Domain.WebApps
 {
     /// <summary>更新WebApp事件
     /// </summary>
-    [Serializable]
     public class WebAppUpdated : DomainEvent<string>
     {
         public WebAppEditableInfo Info { get; private set; }
@@ -15,7 +14,7 @@ namespace NCas.Domain.WebApps
 
         }
 
-        public WebAppUpdated(WebApp webApp, WebAppEditableInfo info) : base()
+        public WebAppUpdated(WebAppEditableInfo info)
         {
             Info = info;
         }

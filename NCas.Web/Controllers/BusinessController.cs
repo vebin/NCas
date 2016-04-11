@@ -15,8 +15,7 @@ namespace NCas.Web.Controllers
         private readonly IWebAppQueryService _webAppQueryService;
 
         public BusinessController(ICommandService commandService, IAccountQueryService accountQueryService,
-            IWebAppQueryService webAppQueryService)
-            : base(commandService)
+            IWebAppQueryService webAppQueryService) : base(commandService)
         {
             _accountQueryService = accountQueryService;
             _webAppQueryService = webAppQueryService;

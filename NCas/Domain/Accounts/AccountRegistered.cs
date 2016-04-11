@@ -5,7 +5,6 @@ namespace NCas.Domain.Accounts
 {
     /// <summary>账号注册事件
     /// </summary>
-    [Serializable]
     public class AccountRegistered : DomainEvent<string>
     {
         public AccountInfo Info { get; private set; }
@@ -15,7 +14,7 @@ namespace NCas.Domain.Accounts
             
         }
 
-        public AccountRegistered(Account account, AccountInfo info) : base()
+        public AccountRegistered(AccountInfo info)
         {
             Info = info;
         }

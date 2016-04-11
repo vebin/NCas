@@ -13,7 +13,8 @@ namespace NCas.Web.Controllers
     {
         private readonly IAccountQueryService _accountQueryService;
 
-        public AccountController(ICommandService commandService, IAccountQueryService accountQueryService):base(commandService)
+        public AccountController(ICommandService commandService, IAccountQueryService accountQueryService)
+            : base(commandService)
         {
             _accountQueryService = accountQueryService;
         }

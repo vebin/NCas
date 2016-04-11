@@ -1,7 +1,4 @@
-﻿using System;
-using System.ServiceProcess;
-using System.Threading;
-using Topshelf;
+﻿using Topshelf;
 
 namespace NCas.MessageBroker
 {

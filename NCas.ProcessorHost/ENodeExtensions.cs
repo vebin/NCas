@@ -1,26 +1,22 @@
-﻿using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Threading;
 using ECommon.Components;
 using ECommon.Logging;
 using ECommon.Scheduling;
 using ECommon.Socketing;
-using ENode.Commanding;
 using ENode.Configurations;
 using ENode.EQueue;
 using ENode.Eventing;
 using ENode.Infrastructure;
-using EQueue.Broker;
+using EQueue.Clients.Consumers;
+using EQueue.Clients.Producers;
 using EQueue.Configurations;
 using NCas.Common;
 namespace NCas.ProcessorHost
 {
     public static class ENodeExtensions
     {
-        private static BrokerController _broker;
-        private static CommandService _commandService;
-        private static CommandResultProcessor _commandResultProcessor;
         private static CommandConsumer _commandConsumer;
         private static ApplicationMessagePublisher _applicationMessagePublisher;
         private static ApplicationMessageConsumer _applicationMessageConsumer;
@@ -29,41 +25,39 @@ namespace NCas.ProcessorHost
         private static PublishableExceptionPublisher _exceptionPublisher;
         private static PublishableExceptionConsumer _exceptionConsumer;
 
+
         public static ENodeConfiguration UseEQueue(this ENodeConfiguration enodeConfiguration)
         {
             var configuration = enodeConfiguration.GetCommonConfiguration();
-            var brokerStorePath = @"c:\equeue-store";
-
-            if (Directory.Exists(brokerStorePath))
-            {
-                Directory.Delete(brokerStorePath, true);
-            }
-
             configuration.RegisterEQueueComponents();
-
-            _broker = BrokerController.Create();
-
-            _commandResultProcessor = new CommandResultProcessor(new IPEndPoint(SocketUtils.GetLocalIPV4(), 9000));
-            _commandService = new CommandService(_commandResultProcessor);
+            var producerSetting = new ProducerSetting
+            {
+                BrokerAddress = new IPEndPoint(SocketUtils.GetLocalIPV4(), ConfigSettings.BrokerProducerPort),
+                BrokerAdminAddress = new IPEndPoint(SocketUtils.GetLocalIPV4(), ConfigSettings.BrokerAdminPort)
+            };
+            var consumerSetting = new ConsumerSetting
+            {
+                BrokerAddress = new IPEndPoint(SocketUtils.GetLocalIPV4(), ConfigSettings.BrokerConsumerPort),
+                BrokerAdminAddress = new IPEndPoint(SocketUtils.GetLocalIPV4(), ConfigSettings.BrokerAdminPort)
+            };
             _applicationMessagePublisher = new ApplicationMessagePublisher();
             _domainEventPublisher = new DomainEventPublisher();
             _exceptionPublisher = new PublishableExceptionPublisher();
 
-            configuration.SetDefault<ICommandService, CommandService>(_commandService);
             configuration.SetDefault<IMessagePublisher<IApplicationMessage>, ApplicationMessagePublisher>(_applicationMessagePublisher);
             configuration.SetDefault<IMessagePublisher<DomainEventStreamMessage>, DomainEventPublisher>(_domainEventPublisher);
             configuration.SetDefault<IMessagePublisher<IPublishableException>, PublishableExceptionPublisher>(_exceptionPublisher);
 
-            _commandConsumer = new CommandConsumer().Subscribe(Topics.NCasCommandTopic);
-            _applicationMessageConsumer = new ApplicationMessageConsumer().Subscribe(Topics.NCasApplicationMessageTopic);
-            _eventConsumer = new DomainEventConsumer().Subscribe(Topics.NCasDomainEventTopic);
-            _exceptionConsumer = new PublishableExceptionConsumer().Subscribe(Topics.NCasExceptionTopic);
+            _commandConsumer = new CommandConsumer("NCasCommandConsumerGroup", consumerSetting).Subscribe(Topics.NCasCommandTopic);
+            _applicationMessageConsumer = new ApplicationMessageConsumer("NCasApplicationMessageConsumerGroup", consumerSetting).Subscribe(Topics.NCasApplicationMessageTopic);
+            _eventConsumer = new DomainEventConsumer("NCasEventConsumerGroup", consumerSetting).Subscribe(Topics.NCasDomainEventTopic);
+            _exceptionConsumer = new PublishableExceptionConsumer("NCasExceptionConsumerGroup", consumerSetting).Subscribe(Topics.NCasExceptionTopic);
 
             return enodeConfiguration;
         }
+
         public static ENodeConfiguration StartEQueue(this ENodeConfiguration enodeConfiguration)
         {
-            _broker.Start();
             _exceptionConsumer.Start();
             _eventConsumer.Start();
             _applicationMessageConsumer.Start();
@@ -71,15 +65,14 @@ namespace NCas.ProcessorHost
             _applicationMessagePublisher.Start();
             _domainEventPublisher.Start();
             _exceptionPublisher.Start();
-            _commandService.Start();
 
             WaitAllConsumerLoadBalanceComplete();
 
             return enodeConfiguration;
         }
+
         public static ENodeConfiguration ShutdownEQueue(this ENodeConfiguration enodeConfiguration)
         {
-            _commandService.Shutdown();
             _applicationMessagePublisher.Shutdown();
             _domainEventPublisher.Shutdown();
             _exceptionPublisher.Shutdown();
@@ -87,7 +80,6 @@ namespace NCas.ProcessorHost
             _applicationMessageConsumer.Shutdown();
             _eventConsumer.Shutdown();
             _exceptionConsumer.Shutdown();
-            _broker.Shutdown();
             return enodeConfiguration;
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using ECommon.Utilities;
 using NCas.Commands.WebApps;
 using NCas.Utils;
 
@@ -41,8 +42,7 @@ namespace NCas.Web.ViewModels
 
         public CreateWebApp ToCommand()
         {
-            var id = Guid.NewGuid().ToString("N");
-            var command = new CreateWebApp(id, WebAppUtils.CreateWebAppKey(), AppName, Url,
+            var command = new CreateWebApp(ObjectId.GenerateNewStringId(), WebAppUtils.CreateWebAppKey(), AppName, Url,
                 VerifyTicketUrl, PutAccountUrl, NotifyUrl);
             return command;
         }

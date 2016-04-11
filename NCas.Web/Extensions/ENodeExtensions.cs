@@ -25,6 +25,7 @@ namespace NCas.Web.Extensions
                 BrokerAdminAddress = new IPEndPoint(SocketUtils.GetLocalIPV4(), ConfigSettings.BrokerAdminPort)
             });
 
+            
             configuration.SetDefault<ICommandService, CommandService>(_commandService);
 
             return enodeConfiguration;

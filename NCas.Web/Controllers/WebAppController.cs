@@ -9,14 +9,13 @@ using NCas.Web.ViewModels;
 
 namespace NCas.Web.Controllers
 {
-    public class WebAppController : Controller
+    public class WebAppController : BaseController
     {
-        private readonly ICommandService _commandService;
         private readonly IWebAppQueryService _webAppQueryService;
 
         public WebAppController(ICommandService commandService, IWebAppQueryService webAppQueryService)
+            : base(commandService)
         {
-            _commandService = commandService;
             _webAppQueryService = webAppQueryService;
         }
 
@@ -71,10 +70,5 @@ namespace NCas.Web.Controllers
         }
 
 
-
-        private Task<AsyncTaskResult<CommandResult>> ExecuteCommandAsync(ICommand command, int millisecondsDelay = 5000)
-        {
-            return _commandService.ExecuteAsync(command, CommandReturnType.EventHandled).TimeoutAfter(millisecondsDelay);
-        }
     }
 }

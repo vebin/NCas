@@ -5,7 +5,6 @@ using NCas.Common;
 
 namespace NCas.ProcessorHost.TopicProviders
 {
-    [Component]
     public class ApplicationMessageTopicProvider : AbstractTopicProvider<IApplicationMessage>
     {
         public override string GetTopic(IApplicationMessage applicationMessage)

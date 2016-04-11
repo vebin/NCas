@@ -5,7 +5,7 @@ using NCas.Common;
 
 namespace NCas.ProcessorHost.TopicProviders
 {
-    [Component]
+   
     public class DomainEventTopicProvider : AbstractTopicProvider<IDomainEvent>
     {
         public override string GetTopic(IDomainEvent evnt)

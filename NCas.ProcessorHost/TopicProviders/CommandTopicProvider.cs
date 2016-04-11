@@ -2,7 +2,7 @@
 using ENode.EQueue;
 using NCas.Common;
 
-namespace NCas.Web.TopicProviders
+namespace NCas.ProcessorHost.TopicProviders
 {
     public class CommandTopicProvider : AbstractTopicProvider<ICommand>
     {

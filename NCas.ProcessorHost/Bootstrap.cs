@@ -69,7 +69,7 @@ namespace NCas.ProcessorHost
 
         private void InitializeENode()
         {
-            ConfigSettings.Initialize();
+              ConfigSettings.Initialize();
 
             var assemblies = new[]
             {
@@ -79,7 +79,7 @@ namespace NCas.ProcessorHost
             var setting = new ConfigurationSetting
             {
                 DefaultDBConfigurationSetting =new DefaultDBConfigurationSetting(ConfigSettings.ENodeConnectionString)
-                //SqlDefaultConnectionString = ConfigSettings.ENodeConnectionString
+      
             };
 
             _enodeConfiguration = _ecommonConfiguration

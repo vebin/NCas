@@ -76,8 +76,7 @@ namespace NCas.MessageBroker
 
         private void InitializeEQueue()
         {
-            _configuration.RegisterEQueueComponents()
-                .UseDeleteMessageByCountStrategy(20);
+            _configuration.RegisterEQueueComponents();
             var storePath = ConfigurationManager.AppSettings["equeueStorePath"];
             var setting = new BrokerSetting(storePath)
             {

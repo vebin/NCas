@@ -15,7 +15,7 @@ namespace NCas.Domain.Accounts
 
         }
 
-        public AccountPasswordUpdated(Account account, string password) : base()
+        public AccountPasswordUpdated(string password)
         {
             Password = password;
         }

@@ -5,7 +5,6 @@ namespace NCas.Domain.WebApps
 {
     /// <summary>创建网站节点事件
     /// </summary>
-    [Serializable]
     public class WebAppCreated : DomainEvent<string>
     {
         public WebAppInfo Info { get; private set; }
@@ -15,7 +14,7 @@ namespace NCas.Domain.WebApps
             
         }
 
-        public WebAppCreated(WebApp webApp, WebAppInfo info) : base()
+        public WebAppCreated(WebAppInfo info)
         {
             Info = info;
         }
