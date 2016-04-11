@@ -40,9 +40,9 @@ namespace NCas.ProcessorHost
                 BrokerAddress = new IPEndPoint(SocketUtils.GetLocalIPV4(), ConfigSettings.BrokerConsumerPort),
                 BrokerAdminAddress = new IPEndPoint(SocketUtils.GetLocalIPV4(), ConfigSettings.BrokerAdminPort)
             };
-            _applicationMessagePublisher = new ApplicationMessagePublisher();
-            _domainEventPublisher = new DomainEventPublisher();
-            _exceptionPublisher = new PublishableExceptionPublisher();
+            _applicationMessagePublisher = new ApplicationMessagePublisher(producerSetting);
+            _domainEventPublisher = new DomainEventPublisher(producerSetting);
+            _exceptionPublisher = new PublishableExceptionPublisher(producerSetting);
 
             configuration.SetDefault<IMessagePublisher<IApplicationMessage>, ApplicationMessagePublisher>(_applicationMessagePublisher);
             configuration.SetDefault<IMessagePublisher<DomainEventStreamMessage>, DomainEventPublisher>(_domainEventPublisher);
