@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using ECommon.Utilities;
 using NCas.Commands.Accounts;
 
 namespace NCas.Web.ViewModels
@@ -38,8 +39,7 @@ namespace NCas.Web.ViewModels
     {
         public static RegisterAccount ToRegisterAccount(this CreateAccountDto dto)
         {
-            var id = Guid.NewGuid().ToString("N");
-            return new RegisterAccount(id, dto.Code, dto.AccountName, dto.Password);
+            return new RegisterAccount(ObjectId.GenerateNewStringId(), dto.Code, dto.AccountName, dto.Password);
         }
     }
 }
