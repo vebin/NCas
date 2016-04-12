@@ -94,7 +94,7 @@ namespace NCas.Core.WebApps
                         _logger.ErrorFormat(
                             "The WebApp can't been found by cacheKey:{0}, and the callBackUrl is also null.", key);
                     }
-                    return _webAppInfoDict.FirstOrDefault(x => PathUtils.SameDomain(x.Key, callBackUrl)).Value;
+                    return _webAppInfoDict.FirstOrDefault(x => PathUtils.SameDomain(x.Value.Url, callBackUrl)).Value;
                 }
                 return _webAppInfoDict.FirstOrDefault(x => x.Key == webAppCache.WebAppId).Value;
             }
