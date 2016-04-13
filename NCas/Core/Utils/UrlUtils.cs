@@ -52,5 +52,13 @@ namespace NCas.Core.Utils
             return url;
         }
 
+        /// <summary>获取客户端通知的Url
+        /// </summary>
+        public static string GetClientNotifyUrl(WebAppInfo webApp)
+        {
+            var url = string.Format(@"{0}", webApp.NotifyUrl);
+            return url;
+        }
+
     }
 }

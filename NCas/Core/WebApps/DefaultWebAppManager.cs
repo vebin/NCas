@@ -139,6 +139,13 @@ namespace NCas.Core.WebApps
             }
         }
 
+        /// <summary>获取全部的WebApps
+        /// </summary>
+        public List<WebAppInfo> GetAllWebApps()
+        {
+            return _webAppInfoDict.Select(x => x.Value).ToList();
+        }
+
 
         ///// <summary>移除过期的缓存
         ///// </summary>

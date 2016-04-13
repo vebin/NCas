@@ -42,7 +42,7 @@ namespace NCas.TestWeb.Controllers
 
         /// <summary>服务器端用来通知客户端登出
         /// </summary>
-        [HttpGet]
+        [HttpPost]
         public ActionResult Notify()
         {
             var encryptCode = RequestUtils.GetString("AccountCode");

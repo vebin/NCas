@@ -11,5 +11,10 @@ namespace NCas.Utils
             string encryptPassword = EncryptHelper.GetDoubleMd5(password);
             return encryptPassword;
         }
+
+        public static string EncryptAccountCode(string code)
+        {
+            return EncryptHelper.AesEncryString(code);
+        }
     }
 }

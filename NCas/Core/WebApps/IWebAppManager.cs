@@ -1,4 +1,6 @@
-﻿namespace NCas.Core.WebApps
+﻿using System.Collections.Generic;
+
+namespace NCas.Core.WebApps
 {
     public interface IWebAppManager
     {
@@ -12,7 +14,7 @@
 
         /// <summary>根据WebApp缓存Key获取缓存
         /// </summary>
-        WebAppInfo GetWebAppInfoByCacheKey(string key,string callBackUrl);
+        WebAppInfo GetWebAppInfoByCacheKey(string key, string callBackUrl);
 
         /// <summary>根据WebAppId获取系统中的WebApp
         /// </summary>
@@ -20,6 +22,10 @@
 
         /// <summary>根据Url获取唯一的WebApp
         /// </summary>
-         WebAppInfo GetWebAppInfoByUrl(string url);
+        WebAppInfo GetWebAppInfoByUrl(string url);
+
+        /// <summary>获取全部的WebApps
+        /// </summary>
+        List<WebAppInfo> GetAllWebApps();
     }
 }

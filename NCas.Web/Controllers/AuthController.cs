@@ -1,16 +1,20 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ECommon.Extensions;
 using ECommon.IO;
 using ECommon.Logging;
 using ENode.Commanding;
+using GUtils.SimulationRequest;
 using GUtils.Utilities;
 using NCas.ApplicationServices;
 using NCas.Core.TicketGrantings;
 using NCas.Core.Tickets;
 using NCas.Core.Utils;
 using NCas.Core.WebApps;
+using NCas.Utils;
 using NCas.Web.ViewModels;
 
 namespace NCas.Web.Controllers
@@ -136,13 +140,33 @@ namespace NCas.Web.Controllers
 
         /// <summary>退出登录
         /// </summary>
-        [HttpGet]
-        public ActionResult LoginOut()
+        [HttpPost]
+        public async Task LoginOut()
         {
-            var callBackUrl = RequestUtils.GetString("CallBackUrl");
-            //移除TGC
-            _ticketGrantingManager.RemoveTicketGranting();
-            return Redirect(callBackUrl);
+            //var callBackUrl = RequestUtils.GetString("CallBackUrl");
+            //先获取是否有包含TGC
+            var account = _ticketGrantingManager.GetTicketGranting();
+            if (account != null)
+            {
+                //移除TGC
+                _ticketGrantingManager.RemoveTicketGranting();
+                var webApps = _webAppManager.GetAllWebApps();
+                var key = "";
+                //异步调用,通知客户端退出
+                var tasks =
+                    webApps.Select(
+                        x =>
+                            new Task(
+                                () =>
+                                {
+                                    SimulatRequest.Instance(UrlUtils.GetClientNotifyUrl(x), "Post")
+                                        .AddParam("AccountCode", EncryptUtils.EncryptAccountCode(account.Code))
+                                        .BeginRequest();
+                                }))
+                        .ToList();
+                await Task.WhenAll(tasks);
+            }
+
         }
 
         #endregion
