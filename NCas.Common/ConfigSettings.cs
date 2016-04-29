@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NCas.Common
 {
@@ -34,12 +30,9 @@ namespace NCas.Common
 
 
         public static IPAddress BrokerIp { get; set; }
-
-        public static int ProducerPort { get; set; }
-
-        public static int ConsumerPort { get; set; }
-
-        public static int AdminPort { get; set; }
+        public static int BrokerProducerPort { get; set; }
+        public static int BrokerConsumerPort { get; set; }
+        public static int BrokerAdminPort { get; set; }
         public static int CommandBindingPort { get; set; }
 
         public static void Initialize()
@@ -60,26 +53,26 @@ namespace NCas.Common
             WebAppTable = "WebApp";
 
 
-            if (ConfigurationManager.AppSettings["BrokerIp"] != null)
+            if (ConfigurationManager.ConnectionStrings["BrokerIp"] != null)
             {
                 BrokerIp = IPAddress.Parse(ConfigurationManager.AppSettings["BrokerIp"]);
             }
-            if (ConfigurationManager.AppSettings["ProducerPort"] != null)
+            if (ConfigurationManager.ConnectionStrings["BrokerProducerPort"] != null)
             {
-                ProducerPort = int.Parse(ConfigurationManager.AppSettings["ProducerPort"]);
+                BrokerProducerPort = int.Parse(ConfigurationManager.AppSettings["BrokerProducerPort"]);
             }
-            if (ConfigurationManager.AppSettings["ConsumerPort"] != null)
+            if (ConfigurationManager.ConnectionStrings["BrokerConsumerPort"] != null)
             {
-                ConsumerPort = int.Parse(ConfigurationManager.AppSettings["ConsumerPort"]);
-            }
-            if (ConfigurationManager.AppSettings["AdminPort"] != null)
-            {
-                AdminPort = int.Parse(ConfigurationManager.AppSettings["AdminPort"]);
+                BrokerConsumerPort = int.Parse(ConfigurationManager.AppSettings["BrokerConsumerPort"]);
             }
 
-            if (ConfigurationManager.AppSettings["CommandBingingPort"] != null)
+            if (ConfigurationManager.ConnectionStrings["BrokerAdminPort"] != null)
             {
-                CommandBindingPort = int.Parse(ConfigurationManager.AppSettings["CommandBingingPort"]);
+                BrokerAdminPort = int.Parse(ConfigurationManager.AppSettings["BrokerAdminPort"]);
+            }
+            if (ConfigurationManager.ConnectionStrings["CommandBindingPort"] != null)
+            {
+                CommandBindingPort = int.Parse(ConfigurationManager.AppSettings["CommandBindingPort"]);
             }
         }
     }

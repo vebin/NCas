@@ -32,13 +32,13 @@ namespace NCas.ProcessorHost
             configuration.RegisterEQueueComponents();
             var producerSetting = new ProducerSetting
             {
-                BrokerAddress = new IPEndPoint(ConfigSettings.BrokerIp, ConfigSettings.ProducerPort),
-                BrokerAdminAddress = new IPEndPoint(ConfigSettings.BrokerIp, ConfigSettings.ConsumerPort)
+                BrokerAddress = new IPEndPoint(ConfigSettings.BrokerIp, ConfigSettings.BrokerProducerPort),
+                BrokerAdminAddress = new IPEndPoint(ConfigSettings.BrokerIp, ConfigSettings.BrokerAdminPort)
             };
             var consumerSetting = new ConsumerSetting
             {
-                BrokerAddress = new IPEndPoint(ConfigSettings.BrokerIp, ConfigSettings.ConsumerPort),
-                BrokerAdminAddress = new IPEndPoint(ConfigSettings.BrokerIp, ConfigSettings.AdminPort)
+                BrokerAddress = new IPEndPoint(ConfigSettings.BrokerIp, ConfigSettings.BrokerConsumerPort),
+                BrokerAdminAddress = new IPEndPoint(ConfigSettings.BrokerIp, ConfigSettings.BrokerAdminPort)
             };
             _applicationMessagePublisher = new ApplicationMessagePublisher(producerSetting);
             _domainEventPublisher = new DomainEventPublisher(producerSetting);

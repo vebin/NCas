@@ -23,8 +23,8 @@ namespace NCas.Web.Extensions
                 new CommandResultProcessor(new IPEndPoint(ConfigSettings.BrokerIp, ConfigSettings.CommandBindingPort)),
                 new ProducerSetting
                 {
-                    BrokerAddress = new IPEndPoint(ConfigSettings.BrokerIp, ConfigSettings.ProducerPort),
-                    BrokerAdminAddress = new IPEndPoint(ConfigSettings.BrokerIp, ConfigSettings.AdminPort)
+                    BrokerAddress = new IPEndPoint(ConfigSettings.BrokerIp, ConfigSettings.BrokerProducerPort),
+                    BrokerAdminAddress = new IPEndPoint(ConfigSettings.BrokerIp, ConfigSettings.BrokerAdminPort)
                 });
             configuration.SetDefault<ICommandService, CommandService>(_commandService);
             return enodeConfiguration;
