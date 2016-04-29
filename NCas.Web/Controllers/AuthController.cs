@@ -28,6 +28,7 @@ namespace NCas.Web.Controllers
         private readonly IWebAppManager _webAppManager;
         private readonly IAccountService _accountService;
         private readonly ILogger _logger;
+
         public AuthController(ICommandService commandService, ITicketGrantingManager ticketGrantingManager,
             ITicketManager ticketManager,
             IWebAppManager webAppManager, IAccountService accountService, ILoggerFactory loggerFactory)

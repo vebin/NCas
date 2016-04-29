@@ -19,17 +19,17 @@ namespace NCas.Web.Extensions
 
             configuration.RegisterEQueueComponents();
 
-            _commandService = new CommandService(new CommandResultProcessor(new IPEndPoint(SocketUtils.GetLocalIPV4(), 9002)), new ProducerSetting
-            {
-                BrokerAddress = new IPEndPoint(SocketUtils.GetLocalIPV4(), ConfigSettings.BrokerProducerPort),
-                BrokerAdminAddress = new IPEndPoint(SocketUtils.GetLocalIPV4(), ConfigSettings.BrokerAdminPort)
-            });
-
-            
+            _commandService = new CommandService(
+                new CommandResultProcessor(new IPEndPoint(ConfigSettings.BrokerIp, ConfigSettings.CommandBindingPort)),
+                new ProducerSetting
+                {
+                    BrokerAddress = new IPEndPoint(ConfigSettings.BrokerIp, ConfigSettings.ProducerPort),
+                    BrokerAdminAddress = new IPEndPoint(ConfigSettings.BrokerIp, ConfigSettings.AdminPort)
+                });
             configuration.SetDefault<ICommandService, CommandService>(_commandService);
-
             return enodeConfiguration;
         }
+
         public static ENodeConfiguration StartEQueue(this ENodeConfiguration enodeConfiguration)
         {
             _commandService.Start();

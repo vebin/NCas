@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,9 +33,14 @@ namespace NCas.Common
         public static string WebAppTable { get; set; }
 
 
-        public static int BrokerProducerPort { get; set; }
-        public static int BrokerConsumerPort { get; set; }
-        public static int BrokerAdminPort { get; set; }
+        public static IPAddress BrokerIp { get; set; }
+
+        public static int ProducerPort { get; set; }
+
+        public static int ConsumerPort { get; set; }
+
+        public static int AdminPort { get; set; }
+        public static int CommandBindingPort { get; set; }
 
         public static void Initialize()
         {
@@ -53,9 +59,28 @@ namespace NCas.Common
             AccountNameIndexTable = "AccountNameIndex";
             WebAppTable = "WebApp";
 
-            BrokerProducerPort = 10000;
-            BrokerConsumerPort = 10001;
-            BrokerAdminPort = 10002;
+
+            if (ConfigurationManager.AppSettings["BrokerIp"] != null)
+            {
+                BrokerIp = IPAddress.Parse(ConfigurationManager.AppSettings["BrokerIp"]);
+            }
+            if (ConfigurationManager.AppSettings["ProducerPort"] != null)
+            {
+                ProducerPort = int.Parse(ConfigurationManager.AppSettings["ProducerPort"]);
+            }
+            if (ConfigurationManager.AppSettings["ConsumerPort"] != null)
+            {
+                ConsumerPort = int.Parse(ConfigurationManager.AppSettings["ConsumerPort"]);
+            }
+            if (ConfigurationManager.AppSettings["AdminPort"] != null)
+            {
+                AdminPort = int.Parse(ConfigurationManager.AppSettings["AdminPort"]);
+            }
+
+            if (ConfigurationManager.AppSettings["CommandBingingPort"] != null)
+            {
+                CommandBindingPort = int.Parse(ConfigurationManager.AppSettings["CommandBingingPort"]);
+            }
         }
     }
 }
