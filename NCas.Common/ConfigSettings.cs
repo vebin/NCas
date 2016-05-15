@@ -53,24 +53,24 @@ namespace NCas.Common
             WebAppTable = "WebApp";
 
 
-            if (ConfigurationManager.ConnectionStrings["BrokerIp"] != null)
+            if (ConfigurationManager.AppSettings["BrokerIp"] != null)
             {
                 BrokerIp = IPAddress.Parse(ConfigurationManager.AppSettings["BrokerIp"]);
             }
-            if (ConfigurationManager.ConnectionStrings["BrokerProducerPort"] != null)
+            if (ConfigurationManager.AppSettings["BrokerProducerPort"] != null)
             {
                 BrokerProducerPort = int.Parse(ConfigurationManager.AppSettings["BrokerProducerPort"]);
             }
-            if (ConfigurationManager.ConnectionStrings["BrokerConsumerPort"] != null)
+            if (ConfigurationManager.AppSettings["BrokerConsumerPort"] != null)
             {
                 BrokerConsumerPort = int.Parse(ConfigurationManager.AppSettings["BrokerConsumerPort"]);
             }
 
-            if (ConfigurationManager.ConnectionStrings["BrokerAdminPort"] != null)
+            if (ConfigurationManager.AppSettings["BrokerAdminPort"] != null)
             {
                 BrokerAdminPort = int.Parse(ConfigurationManager.AppSettings["BrokerAdminPort"]);
             }
-            if (ConfigurationManager.ConnectionStrings["CommandBindingPort"] != null)
+            if (ConfigurationManager.AppSettings["CommandBindingPort"] != null)
             {
                 CommandBindingPort = int.Parse(ConfigurationManager.AppSettings["CommandBindingPort"]);
             }
