@@ -154,20 +154,14 @@ namespace NCas.Web.Controllers
                 var webApps = _webAppManager.GetAllWebApps();
                 var key = "";
                 //异步调用,通知客户端退出
-                var tasks =
-                    webApps.Select(
-                        x =>
-                            new Task(
-                                () =>
-                                {
-                                    SimulatRequest.Instance(UrlUtils.GetClientNotifyUrl(x), "Post")
-                                        .AddParam("AccountCode", EncryptUtils.EncryptAccountCode(account.Code))
-                                        .BeginRequest();
-                                }))
-                        .ToList();
+                var tasks = webApps.Select(x => new Task(() =>
+                {
+                    SimulatRequest.Instance(UrlUtils.GetClientNotifyUrl(x), "Post")
+                        .AddParam("AccountCode", EncryptUtils.EncryptAccountCode(account.Code))
+                        .BeginRequest();
+                })).ToList();
                 await Task.WhenAll(tasks);
             }
-
         }
 
         #endregion
