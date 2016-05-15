@@ -20,11 +20,11 @@ namespace NCas.Web.Extensions
             configuration.RegisterEQueueComponents();
 
             _commandService = new CommandService(
-                new CommandResultProcessor(new IPEndPoint(ConfigSettings.BrokerIp, ConfigSettings.CommandBindingPort)),
+                new CommandResultProcessor(new IPEndPoint(ConfigSettings.BrokerAddress, ConfigSettings.CommandBindingPort)),
                 new ProducerSetting
                 {
-                    BrokerAddress = new IPEndPoint(ConfigSettings.BrokerIp, ConfigSettings.BrokerProducerPort),
-                    BrokerAdminAddress = new IPEndPoint(ConfigSettings.BrokerIp, ConfigSettings.BrokerAdminPort)
+                    BrokerAddress = new IPEndPoint(ConfigSettings.BrokerAddress, ConfigSettings.BrokerProducerPort),
+                    BrokerAdminAddress = new IPEndPoint(ConfigSettings.BrokerAddress, ConfigSettings.BrokerAdminPort)
                 });
             configuration.SetDefault<ICommandService, CommandService>(_commandService);
             return enodeConfiguration;

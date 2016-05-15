@@ -29,7 +29,7 @@ namespace NCas.Common
         public static string WebAppTable { get; set; }
 
 
-        public static IPAddress BrokerIp { get; set; }
+        public static IPAddress BrokerAddress { get; set; }
         public static int BrokerProducerPort { get; set; }
         public static int BrokerConsumerPort { get; set; }
         public static int BrokerAdminPort { get; set; }
@@ -53,9 +53,9 @@ namespace NCas.Common
             WebAppTable = "WebApp";
 
 
-            if (ConfigurationManager.AppSettings["BrokerIp"] != null)
+            if (ConfigurationManager.AppSettings["BrokerAddress"] != null)
             {
-                BrokerIp = IPAddress.Parse(ConfigurationManager.AppSettings["BrokerIp"]);
+                BrokerAddress = IPAddress.Parse(ConfigurationManager.AppSettings["BrokerAddress"]);
             }
             if (ConfigurationManager.AppSettings["BrokerProducerPort"] != null)
             {
