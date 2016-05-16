@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using ECommon.Extensions;
 using ECommon.IO;
 using ENode.Commanding;
-using GUtils.Components;
 
 namespace NCas.Web.Controllers
 {
@@ -18,7 +17,7 @@ namespace NCas.Web.Controllers
 
         protected Task<AsyncTaskResult<CommandResult>> ExecuteCommandAsync(ICommand command, int millisecondsDelay = 5000)
         {
-            return _commandService.ExecuteAsync(command, CommandReturnType.EventHandled).TimeoutAfter(millisecondsDelay);
+            return _commandService.ExecuteAsync(command, CommandReturnType.CommandExecuted).TimeoutAfter(millisecondsDelay);
         }
     }
 }

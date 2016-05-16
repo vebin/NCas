@@ -1,0 +1,254 @@
+@charset 'utf-8';
+/**
+* 截断文本
+*/
+/**
+* 清除浮动
+*/
+/**
+* 响应式图片
+*/
+/**
+* 尺寸
+*/
+/**
+ * inline-block
+ */
+/**
+ * 文字隐藏
+ */
+/**
+ * 文字(强制)折行
+ */
+/**
+ * 自定义字体
+ */
+/**
+ * 透明
+ */
+/**
+ * 背景透明
+ */
+/**
+ * 圆角
+ */
+/**
+ * 阴影
+ */
+/**
+ * 渐变
+ */
+/**
+ * 禁用渐变
+ */
+/**
+ * box-sizing
+ */
+/**
+ * 利用边框制作小三角
+ */
+/**
+ * 鼠标经过旋转
+ */
+/**
+ * 去色(不兼容低版本Safari、Opera和某些firefox), 一般用于哀悼日)
+ */
+/**
+ * 最大高度
+ */
+/*完全居中
+* 1.必须声明元素[max-]height和[max-]width
+* 2.Chrome, Firefox, Safari, Mobile Safari, IE8+; 不支持Windows Phone无效
+*/
+/**
+ * 登录
+ */
+body.fullscreen {
+  box-sizing: border-box;
+}
+.login-top-bar {
+  height: 80px;
+  background-color: #fff;
+}
+.login-top-bar .content-wrapper {
+  width: 1000px;
+  padding: 0;
+  margin: 0 auto;
+  height: 100%;
+}
+.login-top-bar .login-logo {
+  float: left;
+  width: 185px;
+  height: 80px;
+  background: url('../images/logo_Login.jpg') 0 0 no-repeat;
+}
+.login-top-bar .logined-info {
+  float: right;
+  line-height: 80px;
+  color: #666;
+}
+.login-top-bar .logined-info a:hover {
+  text-decoration: underline;
+}
+.login-top-bar .logined-item {
+  margin: 0 3px;
+  color: #666;
+  text-decoration: none;
+}
+.login-block {
+  min-width: 1000px;
+}
+.login-block .img-responsive {
+  margin: auto;
+}
+.login-block .website-title {
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-family: SimHei, '黑体';
+  color: #fff;
+  text-shadow: 2px 0 5px #2f578c;
+}
+.login-block .login-panel {
+  width: 470px;
+  text-align: left;
+  font-family: Microsoft YaHei, '微软雅黑', MicrosoftJhengHei;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+.login-block .login-title {
+  position: relative;
+  height: 40px;
+  padding-bottom: 15px;
+  line-height: 40px;
+  text-align: right;
+}
+.login-block .login-title > .btn-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+  background: url('../images/login-popup-close.png') center center no-repeat;
+  cursor: pointer;
+}
+.login-block .login-content {
+  padding: 0 35px;
+}
+.login-block .form-group {
+  position: relative;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+.login-block .form-group.fence:after {
+  position: absolute;
+  top: 1px;
+  left: 40px;
+  bottom: 1px;
+  width: 1px;
+  background-color: #d5d5d5;
+  content: '';
+}
+.login-block .form-group .icon {
+  position: absolute;
+  top: 15px;
+  left: 12.5px;
+  font-size: 20px;
+  color: #A3A5A2;
+}
+.login-block .form-control {
+  width: 100%;
+  height: 48px;
+  padding-left: 50px;
+  line-height: 48px;
+  box-sizing: border-box;
+}
+.login-block .form-control:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #f5f5f5 inset;
+}
+.login-block .login-submit {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  text-align: center;
+  line-height: 46px;
+  font-family: Microsoft YaHei, '微软雅黑', MicrosoftJhengHei;
+  font-size: 18px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #059cdf;
+  letter-spacing: 5px;
+  border: none;
+  cursor: pointer;
+}
+.login-wrapper {
+  position: relative;
+  text-align: center;
+}
+.login-wrapper .dots {
+  position: absolute;
+  bottom: 75px;
+  z-index: 999;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  list-style-type: none;
+}
+.login-wrapper .dots > li {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin: 0 5px;
+  color: #fff;
+  border-radius: 7px;
+  border: 2px solid #fff;
+  text-indent: 10em;
+  overflow: hidden;
+  cursor: pointer;
+}
+.login-wrapper .dots > li.active {
+  background-color: #fff;
+}
+.login-wrapper .slide-list {
+  height: 550px;
+  overflow: hidden;
+  background-color: #389ffe;
+  *zoom: 1;
+}
+.login-wrapper .slide-list:after {
+  display: block;
+  height: 0;
+  content: '.';
+  clear: both;
+  visibility: hidden;
+}
+.login-wrapper .slide-list > li {
+  float: left;
+  width: 100%;
+}
+.login-footer {
+  height: 60px;
+  font-size: 14px;
+  line-height: 60px;
+  text-align: center;
+  color: #666;
+}
+.btn-login {
+  float: right;
+  height: 45px;
+  margin-top: 18px;
+  padding-left: 65px;
+  line-height: 45px;
+  font-size: 18px;
+  background: url('../images/l_login.jpg') 0 0 no-repeat;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.btn-login:hover {
+  opacity: .8;
+  filter: alpha(opacity=80);
+}

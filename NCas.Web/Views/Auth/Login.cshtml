@@ -1,48 +1,75 @@
 ﻿@model NCas.Web.ViewModels.AccountLoginDto
 
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "启讯教育平台";
+    ViewBag.bodyCls = "fullscreen";
+    ViewBag.htmlCls = "fullscreen";
 }
 
-<h2>Login</h2>
-
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>AccountLoginDto</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.AccountName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AccountName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AccountName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @Html.Hidden("CacheKey", ViewData["CacheKey"])
-        @Html.Hidden("CallBackUrl", ViewData["CallBackUrl"])
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Login" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+@section styles{
+    <link href="~/Content/css/admin.css?@System.Configuration.ConfigurationManager.AppSettings["StaticScourceVersion"]" rel="stylesheet" />
 }
 
+<input id="error-msg" type="hidden" value="@ViewData["errormsg"]" />
+<table width="100%" height="100%">
+    <tbody>
+        <tr>
+            <td align="center" valign="middle">
+                <div class="login-top-bar">
+                    <div class="content-wrapper clearfix">
+                        <a class="login-logo" tabindex="-1" href="javascript:void(0);"></a>
+                        <a class="btn-login" id="btn-login">登录</a>
+                    </div>
+                </div>
+
+                <div class="login-block">
+                    <div class="login-wrapper">
+                        <div id="slider">
+                            <ul class="slide-list">
+                                <li class="slide-1">
+                                    <img class="img-responsive" src="/Content/images/login-slide-1.png" alt="slide-1">
+                                </li>
+                                <li class="slide-2">
+                                    <img class="img-responsive" src="/Content/images/login-slide-2.png" alt="slide-2">
+                                </li>
+                                <li class="slide-3">
+                                    <img class="img-responsive" src="/Content/images/login-slide-3.png" alt="slide-3">
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="login-footer">Copyright © 2016 浙江启讯信息科技有限公司. All rights reserved.</div>
+                    </div>
+                    <!-- 登录弹窗 -->
+                    <div class="login-panel hide" id="pupop-login">
+                        <div class="login-title"><a class="btn-close" href="javascript:void(0);"></a></div>
+                        <div class="login-content">
+                            <form class="pb-20" id="from-login" action="/Login" method="post">
+                                <input type="hidden" name="CacheKey" value="@ViewData["CacheKey"]" />
+                                <input type="hidden" name="CallBackUrl" value="@ViewData["CallBackUrl"]" />
+                                <div class="form-group fence">
+                                    <i class="icon iconfont icon-yonghu"></i>
+                                    <input class="form-control" id="account" name="AccountName" placeholder="请输入帐号" tabindex="1" type="text" />
+                                </div>
+                                <div class="form-group fence">
+                                    <i class="icon iconfont icon-mima"></i>
+                                    <input class="form-control" id="password" name="Password" placeholder="请输入密码" tabindex="2" type="password" />
+                                </div>
+                                <div class="form-group">
+                                    <button class="login-submit" tabindex="3" id="login-submit">登录</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- 登录弹窗 -->
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/layer2.1/layer.js"></script>
+    <script src="~/Scripts/unslider/unslider.min.js"></script>
+    <script src="~/Scripts/app/dev/login.js"></script>
 }

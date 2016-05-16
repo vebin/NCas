@@ -177,17 +177,35 @@
     <Compile Include="ViewModels\WebAppInfoDtoExtension.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\admin.css" />
+    <Content Include="Content\css\gobal.css" />
+    <Content Include="Content\fonts\iconfont.svg" />
+    <Content Include="Content\images\login-logo.png" />
+    <Content Include="Content\images\login-popup-close.png" />
+    <Content Include="Content\images\login-slide-1.png" />
+    <Content Include="Content\images\login-slide-2.png" />
+    <Content Include="Content\images\login-slide-3.png" />
+    <Content Include="Content\images\logo_Login.jpg" />
+    <Content Include="Content\images\l_login.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\fonts\iconfont.eot" />
+    <Content Include="Content\fonts\iconfont.ttf" />
+    <Content Include="Content\fonts\iconfont.woff" />
+    <Content Include="Content\less\admin.less" />
+    <Content Include="Content\less\components\button.less" />
+    <Content Include="Content\less\components\form.less" />
+    <Content Include="Content\less\components\iconfont.less" />
+    <Content Include="Content\less\components\login.less" />
+    <Content Include="Content\less\components\normalize.less" />
+    <Content Include="Content\less\gobal.less" />
+    <Content Include="Content\less\lib.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

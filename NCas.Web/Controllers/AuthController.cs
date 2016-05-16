@@ -28,7 +28,6 @@ namespace NCas.Web.Controllers
         private readonly IWebAppManager _webAppManager;
         private readonly IAccountService _accountService;
         private readonly ILogger _logger;
-
         public AuthController(ICommandService commandService, ITicketGrantingManager ticketGrantingManager,
             ITicketManager ticketManager,
             IWebAppManager webAppManager, IAccountService accountService, ILoggerFactory loggerFactory)
@@ -53,7 +52,7 @@ namespace NCas.Web.Controllers
 
             if (webAppInfo == null)
             {
-                _logger.InfoFormat("WebAppInfo:WebAppInfo is null. CallBackUrl is {0}", callBackUrl);
+                _logger.ErrorFormat("WebAppInfo:WebAppInfo is null. CallBackUrl is {0}", callBackUrl);
                 //如果该系统不存在,那么直接提示错误,或者其他信息
                 return Redirect(UrlUtils.GetErrorUrl());
             }
@@ -120,7 +119,8 @@ namespace NCas.Web.Controllers
             var accountVerifyInfoDto = _accountService.AccountMatch(dto.AccountName, dto.Password);
             if (accountVerifyInfoDto == null)
             {
-                ModelState.AddModelError(string.Empty, "账号或者密码错误");
+                ViewData["errorMsg"] = "账号或者密码错误";
+
                 //账号或者密码错误
                 return View();
             }
@@ -154,14 +154,20 @@ namespace NCas.Web.Controllers
                 var webApps = _webAppManager.GetAllWebApps();
                 var key = "";
                 //异步调用,通知客户端退出
-                var tasks = webApps.Select(x => new Task(() =>
-                {
-                    SimulatRequest.Instance(UrlUtils.GetClientNotifyUrl(x), "Post")
-                        .AddParam("AccountCode", EncryptUtils.EncryptAccountCode(account.Code))
-                        .BeginRequest();
-                })).ToList();
+                var tasks =
+                    webApps.Select(
+                        x =>
+                            new Task(
+                                () =>
+                                {
+                                    SimulatRequest.Instance(UrlUtils.GetClientNotifyUrl(x), "Post")
+                                        .AddParam("AccountCode", EncryptUtils.EncryptAccountCode(account.Code))
+                                        .BeginRequest();
+                                }))
+                        .ToList();
                 await Task.WhenAll(tasks);
             }
+
         }
 
         #endregion
