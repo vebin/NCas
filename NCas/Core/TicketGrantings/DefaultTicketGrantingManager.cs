@@ -18,6 +18,7 @@ namespace NCas.Core.TicketGrantings
 
         public DefaultTicketGrantingManager()
         {
+
         }
 
         public DefaultTicketGrantingManager(TicketGrantingSetting setting, ILoggerFactory loggerFactory,
@@ -57,7 +58,7 @@ namespace NCas.Core.TicketGrantings
 
         /// <summary>对TGC进行加密
         /// </summary>
-        private string EncodeCookie(AccountInfo account)
+        public string EncodeCookie(AccountInfo account)
         {
             try
             {
@@ -74,7 +75,7 @@ namespace NCas.Core.TicketGrantings
 
         /// <summary>TGC解密
         /// </summary>
-        private AccountInfo DecodeCookie(string encodeString)
+        public AccountInfo DecodeCookie(string encodeString)
         {
             try
             {

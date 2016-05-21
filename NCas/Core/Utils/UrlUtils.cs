@@ -60,5 +60,13 @@ namespace NCas.Core.Utils
             return url;
         }
 
+        /// <summary>返回
+        /// </summary>
+        public static string GetCallBackUrl(string baseUrl, string callBackUrl)
+        {
+            var url = string.Format(@"{0}/{1}", baseUrl, callBackUrl);
+            return url;
+        }
+
     }
 }

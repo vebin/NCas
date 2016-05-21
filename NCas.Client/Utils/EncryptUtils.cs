@@ -1,5 +1,4 @@
-﻿using System.Web;
-using GUtils.Encrypt;
+﻿using GUtils.Encrypt;
 using GUtils.Serializing;
 
 namespace NCas.Client.Utils

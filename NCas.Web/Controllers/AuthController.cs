@@ -1,10 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
-using ECommon.Extensions;
-using ECommon.IO;
+using ECommon.Components;
 using ECommon.Logging;
 using ENode.Commanding;
 using GUtils.SimulationRequest;
@@ -19,25 +15,24 @@ using NCas.Web.ViewModels;
 
 namespace NCas.Web.Controllers
 {
-    public class AuthController : Controller
+    public class AuthController : BaseController
     {
-
-        private readonly ICommandService _commandService;
         private readonly ITicketGrantingManager _ticketGrantingManager;
         private readonly ITicketManager _ticketManager;
         private readonly IWebAppManager _webAppManager;
         private readonly IAccountService _accountService;
         private readonly ILogger _logger;
+
         public AuthController(ICommandService commandService, ITicketGrantingManager ticketGrantingManager,
-            ITicketManager ticketManager,
-            IWebAppManager webAppManager, IAccountService accountService, ILoggerFactory loggerFactory)
+            ITicketManager ticketManager, IWebAppManager webAppManager, IAccountService accountService)
+            : base(commandService)
         {
-            _commandService = commandService;
+
             _ticketGrantingManager = ticketGrantingManager;
             _ticketManager = ticketManager;
             _webAppManager = webAppManager;
             _accountService = accountService;
-            _logger = loggerFactory.Create(GetType().FullName);
+            _logger = ObjectContainer.Resolve<ILoggerFactory>().Create(GetType().FullName);
         }
 
         /// <summary>验证页面,查看TGC是否存在,如果TGC不存在,那么就直接跳转到登陆页面,如果存在,则生成Ticket,跳转到客户端页面
@@ -141,10 +136,10 @@ namespace NCas.Web.Controllers
 
         /// <summary>退出登录
         /// </summary>
-        [HttpPost]
-        public async Task LoginOut()
+        [HttpGet]
+        public ActionResult LoginOut()
         {
-            //var callBackUrl = RequestUtils.GetString("CallBackUrl");
+            var callBackUrl = RequestUtils.GetString("CallBackUrl");
             //先获取是否有包含TGC
             var account = _ticketGrantingManager.GetTicketGranting();
             if (account != null)
@@ -152,29 +147,24 @@ namespace NCas.Web.Controllers
                 //移除TGC
                 _ticketGrantingManager.RemoveTicketGranting();
                 var webApps = _webAppManager.GetAllWebApps();
-                var key = "";
+                //var key = "";
                 //异步调用,通知客户端退出
-                var tasks =
-                    webApps.Select(
-                        x =>
-                            new Task(
-                                () =>
-                                {
-                                    SimulatRequest.Instance(UrlUtils.GetClientNotifyUrl(x), "Post")
-                                        .AddParam("AccountCode", EncryptUtils.EncryptAccountCode(account.Code))
-                                        .BeginRequest();
-                                }))
-                        .ToList();
-                await Task.WhenAll(tasks);
+                Task.Factory.StartNew(() =>
+                {
+                    foreach (var webApp in webApps)
+                    {
+                        SimulatRequest.Instance(UrlUtils.GetClientNotifyUrl(webApp), "Post")
+                            .AddParam("AccountCode", EncryptUtils.EncryptAccountCode(account.Code))
+                            .BeginRequestAsync();
+                    }
+                });
             }
-
+            //根据CallBack地址 先拿到请求是属于哪一个客户端
+            var webAppInfo = _webAppManager.GetWebAppInfoByUrl(callBackUrl);
+            CookieUtils.ClearCookie();
+            return Redirect(UrlUtils.GetCallBackUrl(webAppInfo.Url, callBackUrl));
         }
 
         #endregion
-
-        private Task<AsyncTaskResult<CommandResult>> ExecuteCommandAsync(ICommand command, int millisecondsDelay = 5000)
-        {
-            return _commandService.ExecuteAsync(command, CommandReturnType.EventHandled).TimeoutAfter(millisecondsDelay);
-        }
     }
 }
