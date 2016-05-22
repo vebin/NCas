@@ -39,7 +39,7 @@ namespace NCas.Core.WebApps
             _logger = loggerFactory.Create(GetType().FullName);
             _webAppQueryService = webAppQueryService;
             UpdateWebAppInfoDict();
-            scheduleService.StartTask("UpdateWebAppInfoDict", UpdateWebAppInfoDict, 1000, 1000*60*3);
+            scheduleService.StartTask("UpdateWebAppInfoDict", UpdateWebAppInfoDict, 1000, 10000);
         }
 
         /// <summary>生成对应的,用于数据库缓存的Key
