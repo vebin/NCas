@@ -140,10 +140,12 @@ namespace NCas.Web.Controllers
         public ActionResult LoginOut()
         {
             var callBackUrl = RequestUtils.GetString("CallBackUrl");
+            _logger.InfoFormat(callBackUrl);
             //先获取是否有包含TGC
             var account = _ticketGrantingManager.GetTicketGranting();
             if (account != null)
             {
+                _logger.InfoFormat("Id:{0},code:{1}", account.AccountId, account.Code);
                 //移除TGC
                 _ticketGrantingManager.RemoveTicketGranting();
                 var webApps = _webAppManager.GetAllWebApps();
@@ -162,7 +164,11 @@ namespace NCas.Web.Controllers
             //根据CallBack地址 先拿到请求是属于哪一个客户端
             var webAppInfo = _webAppManager.GetWebAppInfoByUrl(callBackUrl);
             CookieUtils.ClearCookie();
-            return Redirect(UrlUtils.GetCallBackUrl(webAppInfo.Url, callBackUrl));
+            if (webAppInfo != null)
+            {
+                return Redirect(UrlUtils.GetClientNotifyUrl(webAppInfo));
+            }
+            return Redirect(callBackUrl);
         }
 
         #endregion
