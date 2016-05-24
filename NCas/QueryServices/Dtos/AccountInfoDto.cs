@@ -19,5 +19,10 @@
             Code = code;
             AccountName = accountName;
         }
+
+        public override string ToString()
+        {
+            return string.Format("[AccountId:{0},Code:{1},AccountName:{2}]", AccountId, Code, AccountName);
+        }
     }
 }

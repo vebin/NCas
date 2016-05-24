@@ -119,12 +119,17 @@ namespace NCas.Web.Controllers
                 //账号或者密码错误
                 return View();
             }
+
             //var webAppKey = RequestUtils.GetString("CacheKey");
             //var callBackUrl = RequestUtils.GetString("CallBackUrl");
 
             var webAppInfo = _webAppManager.GetWebAppInfoByCacheKey(dto.CacheKey, dto.CallBackUrl);
             var accountInfo = new AccountInfo(accountVerifyInfoDto.AccountId, accountVerifyInfoDto.Code,
                 accountVerifyInfoDto.AccountName);
+
+            _logger.Info(accountVerifyInfoDto);
+            _logger.Info(accountInfo);
+          
             //写入TGC,因为已经登陆成功,所以此时需要写入,至于Ticket的验证,那是后续的事情
             _ticketGrantingManager.SetTicketGranting(accountInfo);
             //验证,跳转

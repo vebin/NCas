@@ -31,5 +31,10 @@ namespace NCas.Core.TicketGrantings
             Code = code;
             AccountName = accountName;
         }
+
+        public override string ToString()
+        {
+            return string.Format("[AccountId:{0},AccountName:{1},Code:{2}]", AccountId, AccountName, Code);
+        }
     }
 }
