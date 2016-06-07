@@ -28,7 +28,7 @@ namespace NCas.Common
         /// </summary>
         public static string WebAppTable { get; set; }
 
-
+        public static IPAddress LocalAddress { get; set; }
         public static IPAddress BrokerAddress { get; set; }
         public static int BrokerProducerPort { get; set; }
         public static int BrokerConsumerPort { get; set; }
@@ -52,7 +52,10 @@ namespace NCas.Common
             AccountNameIndexTable = "AccountNameIndex";
             WebAppTable = "WebApp";
 
-
+            if (ConfigurationManager.AppSettings["LocalAddress"] != null)
+            {
+                LocalAddress = IPAddress.Parse(ConfigurationManager.AppSettings["LocalAddress"]);
+            }
             if (ConfigurationManager.AppSettings["BrokerAddress"] != null)
             {
                 BrokerAddress = IPAddress.Parse(ConfigurationManager.AppSettings["BrokerAddress"]);

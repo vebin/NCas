@@ -5,6 +5,7 @@ using ECommon.Configurations;
 using ECommon.Logging;
 using ENode.Configurations;
 using ENode.Infrastructure;
+using ENode.MySqlExtensions;
 using NCas.Common;
 using NCas.Domain.Accounts;
 using ECommonConfiguration = ECommon.Configurations.Configuration;
@@ -86,10 +87,14 @@ namespace NCas.ProcessorHost
                 .CreateENode(setting)
                 .RegisterENodeComponents()
                 .RegisterBusinessComponents(assemblies)
-                .UseSqlServerLockService()
-                .UseSqlServerCommandStore()
-                .UseSqlServerEventStore()
-                .UseSqlServerPublishedVersionStore()
+                //.UseSqlServerLockService()
+                //.UseSqlServerCommandStore()
+                //.UseSqlServerEventStore()
+                //.UseSqlServerPublishedVersionStore()
+                .UseMySqlLockService()
+                .UseMySqlCommandStore()
+                .UseMySqlEventStore()
+                .UseMySqlPublishedVersionStore()
                 .UseEQueue()
                 .InitializeBusinessAssemblies(assemblies);
 

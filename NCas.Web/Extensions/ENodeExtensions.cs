@@ -20,7 +20,7 @@ namespace NCas.Web.Extensions
             configuration.RegisterEQueueComponents();
 
             _commandService = new CommandService(
-                new CommandResultProcessor(new IPEndPoint(ConfigSettings.BrokerAddress, ConfigSettings.CommandBindingPort)),
+                new CommandResultProcessor(new IPEndPoint(ConfigSettings.LocalAddress, ConfigSettings.CommandBindingPort)),
                 new ProducerSetting
                 {
                     BrokerAddress = new IPEndPoint(ConfigSettings.BrokerAddress, ConfigSettings.BrokerProducerPort),
